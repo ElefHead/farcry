@@ -1,2 +1,2 @@
-# FARCRY - cancer center Funding pAtteRns on state Cancer Rates over the Years.
-Visualizing the longitudinal impact of cancer center funding patterns on state cancer rates over the years.
+# FARCRY
+Visualizing the longitudinal impact of cancer center **F**unding p**A**tte**R**ns on state **C**ancer **R**ates over the **Y**ears.
