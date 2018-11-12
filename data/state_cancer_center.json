@@ -1,0 +1,1405 @@
+[
+  {
+    "state_name": "Alabama",
+    "state_code": "AL",
+    "incidence": "445.3",
+    "incidence_rank": "35",
+    "mortality": "181.3",
+    "mortality_rank": "8",
+    "pop_2018": "4888949",
+    "pop_2018_per1M": "4.89",
+    "num_des_cc": "1",
+    "people_per_cc": "4.89",
+    "cc_per10M": "2.05",
+    "rank_cc_per1M": "14",
+    "growth_2018": "0.002913382",
+    "percent_US": "0.014903859",
+    "cancer_centers": [
+      {
+        "name": "University of Alabama at Birmingham",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/uabccc",
+        "lat": "33.505665",
+        "lon": "-86.803484"
+      }
+    ]
+  },
+  {
+    "state_name": "Arizona",
+    "state_code": "AZ",
+    "incidence": "382.5",
+    "incidence_rank": "49",
+    "mortality": "145.2",
+    "mortality_rank": "47",
+    "pop_2018": "7123898",
+    "pop_2018_per1M": "7.12",
+    "num_des_cc": "1",
+    "people_per_cc": "7.12",
+    "cc_per10M": "1.40",
+    "rank_cc_per1M": "6",
+    "growth_2018": "0.015339775",
+    "percent_US": "0.021717055",
+    "cancer_centers": [
+      {
+        "name": "University of Arizona",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/arizonacc",
+        "lat": "32.240778",
+        "lon": "-110.944055"
+      }
+    ]
+  },
+  {
+    "state_name": "California",
+    "state_code": "CA",
+    "incidence": "404",
+    "incidence_rank": "44",
+    "mortality": "147.5",
+    "mortality_rank": "46",
+    "pop_2018": "39776830",
+    "pop_2018_per1M": "39.78",
+    "num_des_cc": "10",
+    "people_per_cc": "3.98",
+    "cc_per10M": "2.51",
+    "rank_cc_per1M": "18",
+    "growth_2018": "0.006074793",
+    "percent_US": "0.121258837",
+    "cancer_centers": [
+      {
+        "name": "Salk Institute",
+        "type": "Basic",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/salk",
+        "lat": "32.887025",
+        "lon": "-117.245792"
+      },
+      {
+        "name": "Sanford Burnham Prebys Medical Discovery Institute",
+        "type": "Basic",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/sanfordburnham",
+        "lat": "32.901382",
+        "lon": "-117.24165"
+      },
+      {
+        "name": "Beckman Research Institute",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/beckmancityofhope",
+        "lat": "46.9167",
+        "lon": "7.4667"
+      },
+      {
+        "name": "Stanford University",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/stanfordci",
+        "lat": "37.425699",
+        "lon": "-122.1819"
+      },
+      {
+        "name": "University of California at Los Angeles",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/uclajonsson",
+        "lat": "34.088459",
+        "lon": "-118.266116"
+      },
+      {
+        "name": "University of California, Davis",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/ucdaviscc",
+        "lat": "38.553553",
+        "lon": "-121.453209"
+      },
+      {
+        "name": "University of California, Irvine",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/ucirvinechao",
+        "lat": "33.880314",
+        "lon": "-117.544105"
+      },
+      {
+        "name": "University of California, San Diego",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/ucsdmoores",
+        "lat": "32.878664",
+        "lon": "-117.218373"
+      },
+      {
+        "name": "University of California, San Francisco",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/ucsfhelendiller",
+        "lat": "37.771053",
+        "lon": "-122.3896"
+      },
+      {
+        "name": "University of Southern California",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/uscnorris",
+        "lat": "34.0755396",
+        "lon": "-118.2078319"
+      }
+    ]
+  },
+  {
+    "state_name": "Colorado",
+    "state_code": "CO",
+    "incidence": "397.4",
+    "incidence_rank": "48",
+    "mortality": "139.6",
+    "mortality_rank": "49",
+    "pop_2018": "5684203",
+    "pop_2018_per1M": "5.68",
+    "num_des_cc": "1",
+    "people_per_cc": "5.68",
+    "cc_per10M": "1.76",
+    "rank_cc_per1M": "11",
+    "growth_2018": "0.013741196",
+    "percent_US": "0.017328174",
+    "cancer_centers": [
+      {
+        "name": "University of Colorado Cancer Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/ucolorado",
+        "lat": "39.745288",
+        "lon": "-104.837594"
+      }
+    ]
+  },
+  {
+    "state_name": "Connecticut",
+    "state_code": "CT",
+    "incidence": "470.8",
+    "incidence_rank": "9",
+    "mortality": "150.1",
+    "mortality_rank": "44",
+    "pop_2018": "3588683",
+    "pop_2018_per1M": "3.59",
+    "num_des_cc": "1",
+    "people_per_cc": "3.59",
+    "cc_per10M": "2.79",
+    "rank_cc_per1M": "19",
+    "growth_2018": "0.000139068",
+    "percent_US": "0.010940025",
+    "cancer_centers": [
+      {
+        "name": "Yale University School of Medicine",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/yalecc",
+        "lat": "41.302071",
+        "lon": "-72.933514"
+      }
+    ]
+  },
+  {
+    "state_name": "District of Columbia",
+    "state_code": "DC",
+    "incidence": "456.5",
+    "incidence_rank": "19",
+    "mortality": "176.8",
+    "mortality_rank": "12",
+    "pop_2018": "703608",
+    "pop_2018_per1M": "0.70",
+    "num_des_cc": "1",
+    "people_per_cc": "0.70",
+    "cc_per10M": "14.21",
+    "rank_cc_per1M": "35",
+    "growth_2018": "0.013885286",
+    "percent_US": "0.002144934",
+    "cancer_centers": [
+      {
+        "name": "Georgetown University Medical Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/georgetownlombardi",
+        "lat": "38.91098",
+        "lon": "-77.075928"
+      }
+    ]
+  },
+  {
+    "state_name": "Florida",
+    "state_code": "FL",
+    "incidence": "420.9",
+    "incidence_rank": "40",
+    "mortality": "154.8",
+    "mortality_rank": "42",
+    "pop_2018": "21312211",
+    "pop_2018_per1M": "21.31",
+    "num_des_cc": "1",
+    "people_per_cc": "21.31",
+    "cc_per10M": "0.47",
+    "rank_cc_per1M": "1",
+    "growth_2018": "0.015621652",
+    "percent_US": "0.064969831",
+    "cancer_centers": [
+      {
+        "name": "Moffitt Cancer Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/moffitt",
+        "lat": "28.054439",
+        "lon": "-82.416201"
+      }
+    ]
+  },
+  {
+    "state_name": "Georgia",
+    "state_code": "GA",
+    "incidence": "454.6",
+    "incidence_rank": "23",
+    "mortality": "167.6",
+    "mortality_rank": "22",
+    "pop_2018": "10545138",
+    "pop_2018_per1M": "10.55",
+    "num_des_cc": "1",
+    "people_per_cc": "10.55",
+    "cc_per10M": "0.95",
+    "rank_cc_per1M": "2",
+    "growth_2018": "0.011099319",
+    "percent_US": "0.032146633",
+    "cancer_centers": [
+      {
+        "name": "Winship Cancer Institute of Emory University",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/emorywinship",
+        "lat": "33.791955",
+        "lon": "-84.320938"
+      }
+    ]
+  },
+  {
+    "state_name": "Hawaii",
+    "state_code": "HI",
+    "incidence": "408.7",
+    "incidence_rank": "42",
+    "mortality": "136.1",
+    "mortality_rank": "50",
+    "pop_2018": "1426393",
+    "pop_2018_per1M": "1.43",
+    "num_des_cc": "1",
+    "people_per_cc": "1.43",
+    "cc_per10M": "7.01",
+    "rank_cc_per1M": "32",
+    "growth_2018": "-0.00080208",
+    "percent_US": "0.004348329",
+    "cancer_centers": [
+      {
+        "name": "University of Hawaii at Manoa",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/uhawaiicc",
+        "lat": "21.2974258",
+        "lon": "-157.8622895"
+      }
+    ]
+  },
+  {
+    "state_name": "Iowa",
+    "state_code": "IA",
+    "incidence": "465.3",
+    "incidence_rank": "12",
+    "mortality": "167.8",
+    "mortality_rank": "21",
+    "pop_2018": "3160553",
+    "pop_2018_per1M": "3.16",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.00471817",
+    "percent_US": "0.00963488",
+    "cancer_centers": [
+      {
+        "name": "University of Iowa",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/iowaholden",
+        "lat": "41.657289",
+        "lon": "-91.549849"
+      }
+    ]
+  },
+  {
+    "state_name": "Illinois",
+    "state_code": "IL",
+    "incidence": "463.7",
+    "incidence_rank": "13",
+    "mortality": "171.8",
+    "mortality_rank": "16",
+    "pop_2018": "12768320",
+    "pop_2018_per1M": "12.77",
+    "num_des_cc": "2",
+    "people_per_cc": "6.38",
+    "cc_per10M": "1.57",
+    "rank_cc_per1M": "7",
+    "growth_2018": "-0.002632631",
+    "percent_US": "0.038923957",
+    "cancer_centers": [
+      {
+        "name": "Northwestern University",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/northwesternlurie",
+        "lat": "41.895723",
+        "lon": "-87.620304"
+      },
+      {
+        "name": "University of Chicago Comprehensive Cancer Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/uchicagoccc",
+        "lat": "41.788784",
+        "lon": "-87.604882"
+      }
+    ]
+  },
+  {
+    "state_name": "Indiana",
+    "state_code": "IN",
+    "incidence": "447",
+    "incidence_rank": "30",
+    "mortality": "181",
+    "mortality_rank": "9",
+    "pop_2018": "6699629",
+    "pop_2018_per1M": "6.70",
+    "num_des_cc": "2",
+    "people_per_cc": "3.35",
+    "cc_per10M": "2.99",
+    "rank_cc_per1M": "23",
+    "growth_2018": "0.004921538",
+    "percent_US": "0.020423679",
+    "cancer_centers": [
+      {
+        "name": "Purdue University Center for Cancer Research",
+        "type": "Basic",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/purdueccr",
+        "lat": "40.420374",
+        "lon": "-86.916539"
+      },
+      {
+        "name": "Indiana University Melvin & Bren Simon Cancer Center",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/indianasimon",
+        "lat": "39.775178",
+        "lon": "-86.178527"
+      }
+    ]
+  },
+  {
+    "state_name": "Kansas",
+    "state_code": "KS",
+    "incidence": "455.2",
+    "incidence_rank": "22",
+    "mortality": "166.3",
+    "mortality_rank": "25",
+    "pop_2018": "2918515",
+    "pop_2018_per1M": "2.92",
+    "num_des_cc": "1",
+    "people_per_cc": "2.92",
+    "cc_per10M": "3.43",
+    "rank_cc_per1M": "26",
+    "growth_2018": "0.001850935",
+    "percent_US": "0.008897032",
+    "cancer_centers": [
+      {
+        "name": "University of Kansas",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/kucc",
+        "lat": "39.064305",
+        "lon": "-94.612978"
+      }
+    ]
+  },
+  {
+    "state_name": "Kentucky",
+    "state_code": "KY",
+    "incidence": "509.9",
+    "incidence_rank": "1",
+    "mortality": "199.3",
+    "mortality_rank": "1",
+    "pop_2018": "4472265",
+    "pop_2018_per1M": "4.47",
+    "num_des_cc": "1",
+    "people_per_cc": "4.47",
+    "cc_per10M": "2.24",
+    "rank_cc_per1M": "15",
+    "growth_2018": "0.004058202",
+    "percent_US": "0.013633607",
+    "cancer_centers": [
+      {
+        "name": "University of Kentucky",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/ukmarkey",
+        "lat": "38.042701",
+        "lon": "-84.488289"
+      }
+    ]
+  },
+  {
+    "state_name": "Massachusetts",
+    "state_code": "MA",
+    "incidence": "459.1",
+    "incidence_rank": "15",
+    "mortality": "159.6",
+    "mortality_rank": "34",
+    "pop_2018": "6895917",
+    "pop_2018_per1M": "6.90",
+    "num_des_cc": "2",
+    "people_per_cc": "3.45",
+    "cc_per10M": "2.90",
+    "rank_cc_per1M": "21",
+    "growth_2018": "0.005262238",
+    "percent_US": "0.021022059",
+    "cancer_centers": [
+      {
+        "name": "Massachusetts Institute of Technology",
+        "type": "Basic",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/mitkoch",
+        "lat": "42.360051",
+        "lon": "-71.094485"
+      },
+      {
+        "name": "Dana-Farber Cancer Institute",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/dfharvard",
+        "lat": "42.337449",
+        "lon": "-71.108196"
+      }
+    ]
+  },
+  {
+    "state_name": "Maryland",
+    "state_code": "MD",
+    "incidence": "446.2",
+    "incidence_rank": "33",
+    "mortality": "162.3",
+    "mortality_rank": "31",
+    "pop_2018": "6079602",
+    "pop_2018_per1M": "6.08",
+    "num_des_cc": "2",
+    "people_per_cc": "3.04",
+    "cc_per10M": "3.29",
+    "rank_cc_per1M": "25",
+    "growth_2018": "0.004531427",
+    "percent_US": "0.01853354",
+    "cancer_centers": [
+      {
+        "name": "Johns Hopkins University",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/hopkinskimmel",
+        "lat": "39.29519",
+        "lon": "-76.594209"
+      },
+      {
+        "name": "University of Maryland",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/umdgreenebaum",
+        "lat": "39.2882737",
+        "lon": "-76.6243944"
+      }
+    ]
+  },
+  {
+    "state_name": "Maine",
+    "state_code": "ME",
+    "incidence": "467",
+    "incidence_rank": "11",
+    "mortality": "176.4",
+    "mortality_rank": "13",
+    "pop_2018": "1341582",
+    "pop_2018_per1M": "1.34",
+    "num_des_cc": "1",
+    "people_per_cc": "1.34",
+    "cc_per10M": "7.45",
+    "rank_cc_per1M": "34",
+    "growth_2018": "0.00424805",
+    "percent_US": "0.004089785",
+    "cancer_centers": [
+      {
+        "name": "The Jackson Laboratory Cancer Center",
+        "type": "Basic",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/jacksonlab",
+        "lat": "44.3653365",
+        "lon": "-68.1962825"
+      }
+    ]
+  },
+  {
+    "state_name": "Michigan",
+    "state_code": "MI",
+    "incidence": "449.5",
+    "incidence_rank": "27",
+    "mortality": "172.7",
+    "mortality_rank": "15",
+    "pop_2018": "9991177",
+    "pop_2018_per1M": "9.99",
+    "num_des_cc": "2",
+    "people_per_cc": "5.00",
+    "cc_per10M": "2.00",
+    "rank_cc_per1M": "13",
+    "growth_2018": "0.00289752",
+    "percent_US": "0.030457895",
+    "cancer_centers": [
+      {
+        "name": "University of Michigan",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/umichiganccc",
+        "lat": "42.2820788",
+        "lon": "-83.727315"
+      },
+      {
+        "name": "Wayne State University School of Medicine",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/waynestatekarmanos",
+        "lat": "42.351444",
+        "lon": "-83.057999"
+      }
+    ]
+  },
+  {
+    "state_name": "Minnesota",
+    "state_code": "MN",
+    "incidence": "457",
+    "incidence_rank": "18",
+    "mortality": "155.3",
+    "mortality_rank": "39",
+    "pop_2018": "5628162",
+    "pop_2018_per1M": "5.63",
+    "num_des_cc": "2",
+    "people_per_cc": "2.81",
+    "cc_per10M": "3.55",
+    "rank_cc_per1M": "28",
+    "growth_2018": "0.00924505",
+    "percent_US": "0.017157335",
+    "cancer_centers": [
+      {
+        "name": "Mayo Clinic",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/mayoclinic",
+        "lat": "44.162943",
+        "lon": "-92.167057"
+      },
+      {
+        "name": "University of Minnesota",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/minnesotamasonic",
+        "lat": "44.972815",
+        "lon": "-93.232222"
+      }
+    ]
+  },
+  {
+    "state_name": "Missouri",
+    "state_code": "MO",
+    "incidence": "450.4",
+    "incidence_rank": "26",
+    "mortality": "178.1",
+    "mortality_rank": "11",
+    "pop_2018": "6135888",
+    "pop_2018_per1M": "6.14",
+    "num_des_cc": "1",
+    "people_per_cc": "6.14",
+    "cc_per10M": "1.63",
+    "rank_cc_per1M": "8",
+    "growth_2018": "0.003656806",
+    "percent_US": "0.018705127",
+    "cancer_centers": [
+      {
+        "name": "Washington University School of Medicine and Barnes-Jewish Hospital",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/washingtonsiteman",
+        "lat": "38.63465",
+        "lon": "-90.263113"
+      }
+    ]
+  },
+  {
+    "state_name": "North Carolina",
+    "state_code": "NC",
+    "incidence": "457.6",
+    "incidence_rank": "16",
+    "mortality": "169.3",
+    "mortality_rank": "19",
+    "pop_2018": "10390149",
+    "pop_2018_per1M": "10.39",
+    "num_des_cc": "3",
+    "people_per_cc": "3.46",
+    "cc_per10M": "2.89",
+    "rank_cc_per1M": "20",
+    "growth_2018": "0.011362332",
+    "percent_US": "0.031674153",
+    "cancer_centers": [
+      {
+        "name": "Duke University Medical Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/dukeci",
+        "lat": "35.899446",
+        "lon": "-78.894883"
+      },
+      {
+        "name": "University of North Carolina Chapel Hill",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/unclineberger",
+        "lat": "35.791672",
+        "lon": "-78.87643"
+      },
+      {
+        "name": "Wake Forest University Health Sciences",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/wakeforest",
+        "lat": "36.089827",
+        "lon": "-80.271364"
+      }
+    ]
+  },
+  {
+    "state_name": "Nebraska",
+    "state_code": "NE",
+    "incidence": "446.8",
+    "incidence_rank": "31",
+    "mortality": "161.2",
+    "mortality_rank": "32",
+    "pop_2018": "1932549",
+    "pop_2018_per1M": "1.93",
+    "num_des_cc": "1",
+    "people_per_cc": "1.93",
+    "cc_per10M": "5.17",
+    "rank_cc_per1M": "31",
+    "growth_2018": "0.006496097",
+    "percent_US": "0.005891335",
+    "cancer_centers": [
+      {
+        "name": "University of Nebraska Medical Center",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/nebraska",
+        "lat": "41.156351",
+        "lon": "-96.018394"
+      }
+    ]
+  },
+  {
+    "state_name": "New Hampshire",
+    "state_code": "NH",
+    "incidence": "479.7",
+    "incidence_rank": "4",
+    "mortality": "164.9",
+    "mortality_rank": "27",
+    "pop_2018": "1350575",
+    "pop_2018_per1M": "1.35",
+    "num_des_cc": "1",
+    "people_per_cc": "1.35",
+    "cc_per10M": "7.40",
+    "rank_cc_per1M": "33",
+    "growth_2018": "0.005793885",
+    "percent_US": "0.0041172",
+    "cancer_centers": [
+      {
+        "name": "Dartmouth-Hitchcock Medical Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/dartmouthnorriscotton",
+        "lat": "43.967542",
+        "lon": "-71.840883"
+      }
+    ]
+  },
+  {
+    "state_name": "New Jersey",
+    "state_code": "NJ",
+    "incidence": "477.5",
+    "incidence_rank": "6",
+    "mortality": "157.7",
+    "mortality_rank": "36",
+    "pop_2018": "9032872",
+    "pop_2018_per1M": "9.03",
+    "num_des_cc": "1",
+    "people_per_cc": "9.03",
+    "cc_per10M": "1.11",
+    "rank_cc_per1M": "3",
+    "growth_2018": "0.003023437",
+    "percent_US": "0.027536522",
+    "cancer_centers": [
+      {
+        "name": "Rutgers Biomedical and Health Sciences",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/cinj",
+        "lat": "40.4964102",
+        "lon": "-74.4482407"
+      }
+    ]
+  },
+  {
+    "state_name": "New Mexico",
+    "state_code": "NM",
+    "incidence": "369.7",
+    "incidence_rank": "50",
+    "mortality": "145",
+    "mortality_rank": "48",
+    "pop_2018": "2090708",
+    "pop_2018_per1M": "2.09",
+    "num_des_cc": "1",
+    "people_per_cc": "2.09",
+    "cc_per10M": "4.78",
+    "rank_cc_per1M": "30",
+    "growth_2018": "0.001263368",
+    "percent_US": "0.00637348",
+    "cancer_centers": [
+      {
+        "name": "University of New Mexico, Albuquerque",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/newmexicocrtc",
+        "lat": "35.085778",
+        "lon": "-106.598189"
+      }
+    ]
+  },
+  {
+    "state_name": "New York",
+    "state_code": "NY",
+    "incidence": "477.7",
+    "incidence_rank": "5",
+    "mortality": "155",
+    "mortality_rank": "41",
+    "pop_2018": "19862512",
+    "pop_2018_per1M": "19.86",
+    "num_des_cc": "7",
+    "people_per_cc": "2.84",
+    "cc_per10M": "3.52",
+    "rank_cc_per1M": "27",
+    "growth_2018": "0.000660625",
+    "percent_US": "0.060550454",
+    "cancer_centers": [
+      {
+        "name": "Cold Spring Harbor Laboratory Cancer Center",
+        "type": "Basic",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/coldspringharbor",
+        "lat": "40.867602",
+        "lon": "-73.473381"
+      },
+      {
+        "name": "Albert Einstein College of Medicine",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/alberteinstein",
+        "lat": "40.851003",
+        "lon": "-73.844241"
+      },
+      {
+        "name": "Icahn School of Medicine at Mount Sinai",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/research/nci-role/cancer-centers/find/tischmountsinai",
+        "lat": "40.7903819",
+        "lon": "-73.9533909"
+      },
+      {
+        "name": "New York University Langone Medical Center",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/nyuci",
+        "lat": "40.721025",
+        "lon": "-74.005248"
+      },
+      {
+        "name": "College of Physicians & Surgeons Columbia University",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/irvingcolumbia",
+        "lat": "40.8400052",
+        "lon": "-73.9396447"
+      },
+      {
+        "name": "Memorial Sloan Kettering Cancer Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/memorialsloankettering",
+        "lat": "40.7644299",
+        "lon": "-73.9576951"
+      },
+      {
+        "name": "Roswell Park Cancer Institute",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/roswellpark",
+        "lat": "42.812881",
+        "lon": "-78.840079"
+      }
+    ]
+  },
+  {
+    "state_name": "Ohio",
+    "state_code": "OH",
+    "incidence": "456.3",
+    "incidence_rank": "21",
+    "mortality": "179.3",
+    "mortality_rank": "10",
+    "pop_2018": "11694664",
+    "pop_2018_per1M": "11.69",
+    "num_des_cc": "2",
+    "people_per_cc": "5.85",
+    "cc_per10M": "1.71",
+    "rank_cc_per1M": "9",
+    "growth_2018": "0.003092564",
+    "percent_US": "0.03565094",
+    "cancer_centers": [
+      {
+        "name": "Case Western Reserve University",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/casewestern",
+        "lat": "41.506653",
+        "lon": "-81.60834"
+      },
+      {
+        "name": "The Ohio State University",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/osujames",
+        "lat": "39.9949966",
+        "lon": "-83.0196933"
+      }
+    ]
+  },
+  {
+    "state_name": "Oregon",
+    "state_code": "OR",
+    "incidence": "428.4",
+    "incidence_rank": "39",
+    "mortality": "164.8",
+    "mortality_rank": "28",
+    "pop_2018": "4199563",
+    "pop_2018_per1M": "4.20",
+    "num_des_cc": "1",
+    "people_per_cc": "4.20",
+    "cc_per10M": "2.38",
+    "rank_cc_per1M": "17",
+    "growth_2018": "0.013707475",
+    "percent_US": "0.01280228",
+    "cancer_centers": [
+      {
+        "name": "Oregon Health & Science University",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/ohsuknight",
+        "lat": "45.499288",
+        "lon": "-122.688076"
+      }
+    ]
+  },
+  {
+    "state_name": "Pennsylvania",
+    "state_code": "PA",
+    "incidence": "481.7",
+    "incidence_rank": "3",
+    "mortality": "171.6",
+    "mortality_rank": "17",
+    "pop_2018": "12823989",
+    "pop_2018_per1M": "12.82",
+    "num_des_cc": "5",
+    "people_per_cc": "2.56",
+    "cc_per10M": "3.90",
+    "rank_cc_per1M": "29",
+    "growth_2018": "0.001440939",
+    "percent_US": "0.039093663",
+    "cancer_centers": [
+      {
+        "name": "The Wistar Institute Cancer Center",
+        "type": "Basic",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/wistar",
+        "lat": "39.951189",
+        "lon": "-75.1958788"
+      },
+      {
+        "name": "Thomas Jefferson University",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/jeffersonkimmel",
+        "lat": "39.947275",
+        "lon": "-75.157576"
+      },
+      {
+        "name": "Fox Chase Cancer Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/foxchase",
+        "lat": "40.0499062",
+        "lon": "-75.063798"
+      },
+      {
+        "name": "University of Pennsylvania",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/upennabramson",
+        "lat": "39.950446",
+        "lon": "-75.192587"
+      },
+      {
+        "name": "University of Pittsburgh Cancer Institute",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/upci",
+        "lat": "40.4547295",
+        "lon": "-79.9422347"
+      }
+    ]
+  },
+  {
+    "state_name": "South Carolina",
+    "state_code": "SC",
+    "incidence": "451.1",
+    "incidence_rank": "25",
+    "mortality": "174.5",
+    "mortality_rank": "14",
+    "pop_2018": "5088916",
+    "pop_2018_per1M": "5.09",
+    "num_des_cc": "1",
+    "people_per_cc": "5.09",
+    "cc_per10M": "1.97",
+    "rank_cc_per1M": "12",
+    "growth_2018": "0.012846787",
+    "percent_US": "0.015513454",
+    "cancer_centers": [
+      {
+        "name": "Medical University of South Carolina",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/muschollings",
+        "lat": "32.783366",
+        "lon": "-79.9475332"
+      }
+    ]
+  },
+  {
+    "state_name": "Tennessee",
+    "state_code": "TN",
+    "incidence": "456.4",
+    "incidence_rank": "20",
+    "mortality": "185.4",
+    "mortality_rank": "7",
+    "pop_2018": "6782564",
+    "pop_2018_per1M": "6.78",
+    "num_des_cc": "2",
+    "people_per_cc": "3.39",
+    "cc_per10M": "2.95",
+    "rank_cc_per1M": "22",
+    "growth_2018": "0.009913663",
+    "percent_US": "0.020676505",
+    "cancer_centers": [
+      {
+        "name": "St. Jude Children's Research Hospital",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/stjude",
+        "lat": "35.1543895",
+        "lon": "-90.042221"
+      },
+      {
+        "name": "Vanderbilt University",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/vanderbiltingram",
+        "lat": "36.186605",
+        "lon": "-86.785248"
+      }
+    ]
+  },
+  {
+    "state_name": "Texas",
+    "state_code": "TX",
+    "incidence": "401.3",
+    "incidence_rank": "45",
+    "mortality": "156.4",
+    "mortality_rank": "38",
+    "pop_2018": "28704330",
+    "pop_2018_per1M": "28.70",
+    "num_des_cc": "4",
+    "people_per_cc": "7.18",
+    "cc_per10M": "1.39",
+    "rank_cc_per1M": "5",
+    "growth_2018": "0.014122583",
+    "percent_US": "0.087504552",
+    "cancer_centers": [
+      {
+        "name": "University of Texas Health Science Center at San Antonio",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/utsanantonio",
+        "lat": "29.513009",
+        "lon": "-98.580618"
+      },
+      {
+        "name": "Baylor College of Medicine",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/baylorduncan",
+        "lat": "29.711078",
+        "lon": "-95.397008"
+      },
+      {
+        "name": "University of Texas",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/mdanderson",
+        "lat": "29.706787",
+        "lon": "-95.401748"
+      },
+      {
+        "name": "University of Texas Southwestern Medical Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/utswsimmons",
+        "lat": "32.8176123",
+        "lon": "-96.8410405"
+      }
+    ]
+  },
+  {
+    "state_name": "Utah",
+    "state_code": "UT",
+    "incidence": "400.1",
+    "incidence_rank": "46",
+    "mortality": "127.2",
+    "mortality_rank": "51",
+    "pop_2018": "3159345",
+    "pop_2018_per1M": "3.16",
+    "num_des_cc": "1",
+    "people_per_cc": "3.16",
+    "cc_per10M": "3.17",
+    "rank_cc_per1M": "24",
+    "growth_2018": "0.018541295",
+    "percent_US": "0.009631197",
+    "cancer_centers": [
+      {
+        "name": "University of Utah",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/utahhuntsman",
+        "lat": "40.708843",
+        "lon": "-111.833043"
+      }
+    ]
+  },
+  {
+    "state_name": "Virginia",
+    "state_code": "VA",
+    "incidence": "414.3",
+    "incidence_rank": "41",
+    "mortality": "163.8",
+    "mortality_rank": "30",
+    "pop_2018": "8525660",
+    "pop_2018_per1M": "8.53",
+    "num_des_cc": "2",
+    "people_per_cc": "4.26",
+    "cc_per10M": "2.35",
+    "rank_cc_per1M": "16",
+    "growth_2018": "0.006569052",
+    "percent_US": "0.025990297",
+    "cancer_centers": [
+      {
+        "name": "University of Virginia",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/uvacc",
+        "lat": "38.040101",
+        "lon": "-78.485066"
+      },
+      {
+        "name": "Virginia Commonwealth University",
+        "type": "Clinical",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/vcumassey",
+        "lat": "37.540646",
+        "lon": "-77.431555"
+      }
+    ]
+  },
+  {
+    "state_name": "Washington",
+    "state_code": "WA",
+    "incidence": "445.5",
+    "incidence_rank": "34",
+    "mortality": "159.3",
+    "mortality_rank": "35",
+    "pop_2018": "7530552",
+    "pop_2018_per1M": "7.53",
+    "num_des_cc": "1",
+    "people_per_cc": "7.53",
+    "cc_per10M": "1.33",
+    "rank_cc_per1M": "4",
+    "growth_2018": "0.016853002",
+    "percent_US": "0.022956731",
+    "cancer_centers": [
+      {
+        "name": "Fred Hutchinson Cancer Research Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/fredhutchcrc",
+        "lat": "47.631863",
+        "lon": "-122.344267"
+      }
+    ]
+  },
+  {
+    "state_name": "Wisconsin",
+    "state_code": "WI",
+    "incidence": "457.2",
+    "incidence_rank": "17",
+    "mortality": "165.2",
+    "mortality_rank": "26",
+    "pop_2018": "5818049",
+    "pop_2018_per1M": "5.82",
+    "num_des_cc": "1",
+    "people_per_cc": "5.82",
+    "cc_per10M": "1.72",
+    "rank_cc_per1M": "10",
+    "growth_2018": "0.003893722",
+    "percent_US": "0.017736201",
+    "cancer_centers": [
+      {
+        "name": "University of Wisconsin Carbone Cancer Center",
+        "type": "Comp",
+        "link": "http://www.cancer.gov/researchandfunding/extramural/cancercenters/find-a-cancer-center/uwcarbone",
+        "lat": "43.077708",
+        "lon": "-89.429199"
+      }
+    ]
+  },
+  {
+    "state_name": "Louisiana",
+    "state_code": "KY",
+    "incidence": "475.9",
+    "incidence_rank": "7",
+    "mortality": "187.8",
+    "mortality_rank": "4",
+    "pop_2018": "4682509",
+    "pop_2018_per1M": "4.68",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "-0.000389383",
+    "percent_US": "0.014274531",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Oklahoma",
+    "state_code": "MD",
+    "incidence": "442.6",
+    "incidence_rank": "36",
+    "mortality": "186",
+    "mortality_rank": "6",
+    "pop_2018": "3940521",
+    "pop_2018_per1M": "3.94",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.002456712",
+    "percent_US": "0.012012596",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Nevada",
+    "state_code": "MI",
+    "incidence": NaN,
+    "incidence_rank": NaN,
+    "mortality": "164.1",
+    "mortality_rank": "29",
+    "pop_2018": "3056824",
+    "pop_2018_per1M": "3.06",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.019607817",
+    "percent_US": "0.009318664",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Arkansas",
+    "state_code": "MN",
+    "incidence": "452.4",
+    "incidence_rank": "24",
+    "mortality": "187.5",
+    "mortality_rank": "5",
+    "pop_2018": "3020327",
+    "pop_2018_per1M": "3.02",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.005341714",
+    "percent_US": "0.009207404",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Mississippi",
+    "state_code": "MN",
+    "incidence": "461.6",
+    "incidence_rank": "14",
+    "mortality": "194.9",
+    "mortality_rank": "2",
+    "pop_2018": "2982785",
+    "pop_2018_per1M": "2.98",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "-0.000440669",
+    "percent_US": "0.009092958",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "West Virginia",
+    "state_code": "NC",
+    "incidence": "469.9",
+    "incidence_rank": "10",
+    "mortality": "193.1",
+    "mortality_rank": "3",
+    "pop_2018": "1803077",
+    "pop_2018_per1M": "1.80",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "-0.007037999",
+    "percent_US": "0.005496643",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Idaho",
+    "state_code": "NE",
+    "incidence": "431.8",
+    "incidence_rank": "38",
+    "mortality": "155.1",
+    "mortality_rank": "40",
+    "pop_2018": "1753860",
+    "pop_2018_per1M": "1.75",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.021501587",
+    "percent_US": "0.005346606",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Montana",
+    "state_code": "NY",
+    "incidence": "438",
+    "incidence_rank": "37",
+    "mortality": "157.3",
+    "mortality_rank": "37",
+    "pop_2018": "1062330",
+    "pop_2018_per1M": "1.06",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.011268043",
+    "percent_US": "0.003238491",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Rhode Island",
+    "state_code": "NY",
+    "incidence": "474",
+    "incidence_rank": "8",
+    "mortality": "166.8",
+    "mortality_rank": "24",
+    "pop_2018": "1061712",
+    "pop_2018_per1M": "1.06",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.001956327",
+    "percent_US": "0.003236607",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Delaware",
+    "state_code": "NY",
+    "incidence": "493.5",
+    "incidence_rank": "2",
+    "mortality": "171.1",
+    "mortality_rank": "18",
+    "pop_2018": "971180",
+    "pop_2018_per1M": "0.97",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.009606638",
+    "percent_US": "0.002960622",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "South Dakota",
+    "state_code": "NY",
+    "incidence": "447.3",
+    "incidence_rank": "29",
+    "mortality": "160.3",
+    "mortality_rank": "33",
+    "pop_2018": "877790",
+    "pop_2018_per1M": "0.88",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.009341517",
+    "percent_US": "0.002675925",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "North Dakota",
+    "state_code": "NY",
+    "incidence": "446.3",
+    "incidence_rank": "32",
+    "mortality": "153.1",
+    "mortality_rank": "43",
+    "pop_2018": "755238",
+    "pop_2018_per1M": "0.76",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "-0.000205191",
+    "percent_US": "0.002302327",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Alaska",
+    "state_code": "NY",
+    "incidence": "407.5",
+    "incidence_rank": "43",
+    "mortality": "168.4",
+    "mortality_rank": "20",
+    "pop_2018": "738068",
+    "pop_2018_per1M": "0.74",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "-0.00233443",
+    "percent_US": "0.002249985",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Vermont",
+    "state_code": "OH",
+    "incidence": "449",
+    "incidence_rank": "28",
+    "mortality": "167.6",
+    "mortality_rank": "22",
+    "pop_2018": "623960",
+    "pop_2018_per1M": "0.62",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "0.000485844",
+    "percent_US": "0.001902129",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Wyoming",
+    "state_code": "OH",
+    "incidence": "397.6",
+    "incidence_rank": "47",
+    "mortality": "147.6",
+    "mortality_rank": "45",
+    "pop_2018": "573720",
+    "pop_2018_per1M": "0.57",
+    "num_des_cc": "0",
+    "people_per_cc": "0.00",
+    "cc_per10M": "0.00",
+    "rank_cc_per1M": "36",
+    "growth_2018": "-0.009657958",
+    "percent_US": "0.001748973",
+    "cancer_centers": []
+  },
+  {
+    "state_name": "Puerto Rico ",
+    "state_code": "OR",
+    "incidence": "354.9",
+    "incidence_rank": "51",
+    "mortality": "118.9",
+    "mortality_rank": "52",
+    "pop_2018": NaN,
+    "pop_2018_per1M": NaN,
+    "num_des_cc": NaN,
+    "people_per_cc": NaN,
+    "cc_per10M": NaN,
+    "rank_cc_per1M": NaN,
+    "growth_2018": NaN,
+    "percent_US": NaN,
+    "cancer_centers": []
+  }
+]
