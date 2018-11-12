@@ -36,9 +36,6 @@ class Constants:
     }
 
 
-
-
-
 def read_csv(loc='', filename='', sep=',', header='infer', encoding='ISO-8859-1', dtype=None):
     '''
     Function to read csv into a pandas data frame
