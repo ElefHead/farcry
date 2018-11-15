@@ -35,6 +35,18 @@ class Constants:
         'MP': 'Northern Mariana Islands', 'PW': 'Palau', 'PR': 'Puerto Rico', 'VI': 'Virgin Islands'
     }
 
+    STATE_NAMES_SHORTEN = {'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR', 'California': 'CA', 'Colorado': 'CO', 'Connecticut': 'CT', 'Delaware': 'DE', 'Florida': 'FL', 'Georgia': 'GA', 'Hawaii': 'HI', 'Idaho': 'ID', 'Illinois': 'IL', 'Indiana': 'IN', 'Iowa': 'IA', 'Kansas': 'KS', 'Kentucky': 'KY', 'Louisiana': 'LA', 'Maine': 'ME', 'Maryland': 'MD', 'Massachusetts': 'MA', 'Michigan': 'MI', 'Minnesota': 'MN', 'Mississippi': 'MS', 'Missouri': 'MO', 'Montana': 'MT', 'Nebraska': 'NE', 'Nevada': 'NV', 'New Hampshire': 'NH', 'New Jersey': 'NJ', 'New Mexico': 'NM', 'New York': 'NY', 'North Carolina': 'NC', 'North Dakota': 'ND', 'Ohio': 'OH', 'Oklahoma': 'OK', 'Oregon': 'OR', 'Pennsylvania': 'PA', 'Rhode Island': 'RI', 'South Carolina': 'SC', 'South Dakota': 'SD', 'Tennessee': 'TN', 'Texas': 'TX', 'Utah': 'UT', 'Vermont': 'VT', 'Virginia': 'VA', 'Washington': 'WA', 'West Virginia': 'WV', 'Wisconsin': 'WI', 'Wyoming': 'WY', 'American Samoa': 'AS', 'District of Columbia': 'DC', 'Federated States of Micronesia': 'FM', 'Guam': 'GU', 'Marshall Islands': 'MH', 'Northern Mariana Islands': 'MP', 'Palau': 'PW', 'Puerto Rico': 'PR', 'Virgin Islands': 'VI'}
+
+    #   state FIPS
+    STATE_CODES = {
+        'Alabama': 1, 'Alaska': 2, 'Arizona': 4, 'Arkansas': 5, 'California': 6, 'Colorado': 8, 'Connecticut': 9, 'Delaware': 10, 'District of Columbia': 11,
+        'Florida': 12, 'Georgia': 13, 'Hawaii': 15, 'Idaho': 16, 'Illinois': 17, 'Indiana': 18, 'Iowa': 19, 'Kansas':20, 'Kentucky':21, 'Louisiana':22, 'Maine':23,
+        'Maryland': 24, 'Massachusetts': 25, 'Michigan': 26, 'Minnesota':27, 'Mississippi':28, 'Missouri':29, 'Montana':30, 'Nebraska':31, 'Nevada':32, 'New Hampshire': 33,
+        'New Jersey': 34, 'New Mexico': 35, 'New York': 36, 'North Carolina': 37, 'North Dakota': 38, 'Ohio': 39, 'Oklahoma': 40, 'Oregon':41, 'Pennsylvania':42, 'Rhode Island':44,
+        'South Carolina': 45, 'South Dakota': 46, 'Tennessee': 47, 'Texas': 48, 'Utah': 49, 'Vermont': 50, 'Virginia': 51, 'Washington': 53, 'West Virginia': 54, 'Wisconsin': 55, 
+        'Wyoming': 56, 'American Samoa': 60, 'Guam': 66, 'Northern Mariana Islands': 69, 'Puerto Rico': 72, 'U.S. Minor Outlying Islands': 74, 'U.S. Virgin Islands': 78
+    }
+
 
 def read_csv(loc='', filename='', sep=',', header='infer', encoding='ISO-8859-1', dtype=None):
     '''
@@ -84,9 +96,13 @@ def transform_data():
     data_dict = {}
 
     for i in range(cancer_centers.shape[0]):
-        state = cancer_centers['State'][i]
-        if state in Constants.STATE_NAME:
-            state = Constants.STATE_NAME[state]
+        state_name = cancer_centers['State'][i]
+        if state_name in Constants.STATE_NAME:
+            state_name = Constants.STATE_NAME[state_name]
+        else:
+            continue
+        if state_name in Constants.STATE_CODES:
+            state = Constants.STATE_CODES[state_name]
         else:
             continue
         lat = cancer_centers['Latitude'][i]
@@ -97,20 +113,20 @@ def transform_data():
 
         if state not in data_dict:
             data_dict[state] = {}
-            data_dict[state]['state_name'] = state
-            data_dict[state]['state_code'] = cancer_centers['State'][i]
-            data_dict[state]['incidence'] = state_incidence_dict[state]['All cancer incidence 2011-2015']
-            data_dict[state]['incidence_rank'] = state_incidence_dict[state]['cancer incidence rank']
-            data_dict[state]['mortality'] = state_mortality_dict[state]['Age-Adjusted cancer Death per 100K 2011-15']
-            data_dict[state]['mortality_rank'] = state_mortality_dict[state]['cancer death rank']
-            data_dict[state]['pop_2018'] = state_mortality_dict[state]['2018 Population']
-            data_dict[state]['pop_2018_per1M'] =  state_mortality_dict[state]['pop per 1 M']
-            data_dict[state]['num_des_cc'] = state_mortality_dict[state]['# designated cancer centers by state']
-            data_dict[state]['people_per_cc'] = state_mortality_dict[state]['people (in million) per cancer center']
-            data_dict[state]['cc_per10M'] = state_mortality_dict[state]['cancer centers per 10 million population']
-            data_dict[state]['rank_cc_per1M'] = state_mortality_dict[state]['Rank of CC per 1 million people']
-            data_dict[state]['growth_2018'] = state_mortality_dict[state]['2018 Growth']
-            data_dict[state]['percent_US'] = state_mortality_dict[state]['% of US']
+            data_dict[state]['state_name'] = state_name
+            data_dict[state]['state_code'] = Constants.STATE_NAMES_SHORTEN[state_name]
+            data_dict[state]['incidence'] = state_incidence_dict[state_name]['All cancer incidence 2011-2015']
+            data_dict[state]['incidence_rank'] = state_incidence_dict[state_name]['cancer incidence rank']
+            data_dict[state]['mortality'] = state_mortality_dict[state_name]['Age-Adjusted cancer Death per 100K 2011-15']
+            data_dict[state]['mortality_rank'] = state_mortality_dict[state_name]['cancer death rank']
+            data_dict[state]['pop_2018'] = state_mortality_dict[state_name]['2018 Population']
+            data_dict[state]['pop_2018_per1M'] =  state_mortality_dict[state_name]['pop per 1 M']
+            data_dict[state]['num_des_cc'] = state_mortality_dict[state_name]['# designated cancer centers by state']
+            data_dict[state]['people_per_cc'] = state_mortality_dict[state_name]['people (in million) per cancer center']
+            data_dict[state]['cc_per10M'] = state_mortality_dict[state_name]['cancer centers per 10 million population']
+            data_dict[state]['rank_cc_per1M'] = state_mortality_dict[state_name]['Rank of CC per 1 million people']
+            data_dict[state]['growth_2018'] = state_mortality_dict[state_name]['2018 Growth']
+            data_dict[state]['percent_US'] = state_mortality_dict[state_name]['% of US']
             data_dict[state]['cancer_centers'] = []
 
         data_dict[state]['cancer_centers'].append({
@@ -125,22 +141,25 @@ def transform_data():
         state = state_mortality['State'][i]
         if type(state) == type(1.0) or state=='NaN' or state.strip().lower()=='us':
             continue
+        state_name = state_mortality['State'][i].strip()
+        state = Constants.STATE_CODES[state_name]
+
         if state not in data_dict:
             data_dict[state] = {}
-            data_dict[state]['state_name'] = state
-            data_dict[state]['state_code'] = cancer_centers['State'][i] if state.strip().lower() != 'us' else 'NaN'
-            data_dict[state]['incidence'] = state_incidence_dict[state]['All cancer incidence 2011-2015']
-            data_dict[state]['incidence_rank'] = state_incidence_dict[state]['cancer incidence rank']
-            data_dict[state]['mortality'] = state_mortality_dict[state]['Age-Adjusted cancer Death per 100K 2011-15']
-            data_dict[state]['mortality_rank'] = state_mortality_dict[state]['cancer death rank']
-            data_dict[state]['pop_2018'] = state_mortality_dict[state]['2018 Population']
-            data_dict[state]['pop_2018_per1M'] = state_mortality_dict[state]['pop per 1 M']
-            data_dict[state]['num_des_cc'] = state_mortality_dict[state]['# designated cancer centers by state']
-            data_dict[state]['people_per_cc'] = state_mortality_dict[state]['people (in million) per cancer center']
-            data_dict[state]['cc_per10M'] = state_mortality_dict[state]['cancer centers per 10 million population']
-            data_dict[state]['rank_cc_per1M'] = state_mortality_dict[state]['Rank of CC per 1 million people']
-            data_dict[state]['growth_2018'] = state_mortality_dict[state]['2018 Growth']
-            data_dict[state]['percent_US'] = state_mortality_dict[state]['% of US']
+            data_dict[state]['state_name'] = state_name
+            data_dict[state]['state_code'] = Constants.STATE_NAMES_SHORTEN[state_name]
+            data_dict[state]['incidence'] = state_incidence_dict[state_name]['All cancer incidence 2011-2015'] if state_name in state_incidence_dict else None
+            data_dict[state]['incidence_rank'] = state_incidence_dict[state_name]['cancer incidence rank'] if state_name in state_incidence_dict else None
+            data_dict[state]['mortality'] = state_mortality_dict[state_name]['Age-Adjusted cancer Death per 100K 2011-15'] if state_name in state_mortality_dict else None
+            data_dict[state]['mortality_rank'] = state_mortality_dict[state_name]['cancer death rank'] if state_name in state_mortality_dict else None
+            data_dict[state]['pop_2018'] = state_mortality_dict[state_name]['2018 Population'] if state_name in state_mortality_dict else None
+            data_dict[state]['pop_2018_per1M'] = state_mortality_dict[state_name]['pop per 1 M'] if state_name in state_mortality_dict else None
+            data_dict[state]['num_des_cc'] = state_mortality_dict[state_name]['# designated cancer centers by state'] if state_name in state_mortality_dict else None
+            data_dict[state]['people_per_cc'] = state_mortality_dict[state_name]['people (in million) per cancer center'] if state_name in state_mortality_dict else None
+            data_dict[state]['cc_per10M'] = state_mortality_dict[state_name]['cancer centers per 10 million population'] if state_name in state_mortality_dict else None
+            data_dict[state]['rank_cc_per1M'] = state_mortality_dict[state_name]['Rank of CC per 1 million people'] if state_name in state_mortality_dict else None
+            data_dict[state]['growth_2018'] = state_mortality_dict[state_name]['2018 Growth'] if state_name in state_mortality_dict else None
+            data_dict[state]['percent_US'] = state_mortality_dict[state_name]['% of US'] if state_name in state_mortality_dict else None
             data_dict[state]['cancer_centers'] = []
 
     return data_dict
@@ -157,8 +176,8 @@ def write_json(data, loc='', filename='', indent=2):
 
 if __name__ == '__main__':
     data_dict = transform_data()
-    print(len(data_dict.items()))
-    write_json(list(data_dict.values()), path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER)
+    write_json(data_dict, path.join(Constants.ROOT_DIR, Constants.DATA_DIR),
+               Constants.JSON_DUMP_CANCER_CENTER)
 
 
 

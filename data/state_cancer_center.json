@@ -1,5 +1,5 @@
-[
-  {
+{
+  "1": {
     "state_name": "Alabama",
     "state_code": "AL",
     "incidence": "445.3",
@@ -24,7 +24,7 @@
       }
     ]
   },
-  {
+  "4": {
     "state_name": "Arizona",
     "state_code": "AZ",
     "incidence": "382.5",
@@ -49,7 +49,7 @@
       }
     ]
   },
-  {
+  "6": {
     "state_name": "California",
     "state_code": "CA",
     "incidence": "404",
@@ -137,7 +137,7 @@
       }
     ]
   },
-  {
+  "8": {
     "state_name": "Colorado",
     "state_code": "CO",
     "incidence": "397.4",
@@ -162,7 +162,7 @@
       }
     ]
   },
-  {
+  "9": {
     "state_name": "Connecticut",
     "state_code": "CT",
     "incidence": "470.8",
@@ -187,7 +187,7 @@
       }
     ]
   },
-  {
+  "11": {
     "state_name": "District of Columbia",
     "state_code": "DC",
     "incidence": "456.5",
@@ -212,7 +212,7 @@
       }
     ]
   },
-  {
+  "12": {
     "state_name": "Florida",
     "state_code": "FL",
     "incidence": "420.9",
@@ -237,7 +237,7 @@
       }
     ]
   },
-  {
+  "13": {
     "state_name": "Georgia",
     "state_code": "GA",
     "incidence": "454.6",
@@ -262,7 +262,7 @@
       }
     ]
   },
-  {
+  "15": {
     "state_name": "Hawaii",
     "state_code": "HI",
     "incidence": "408.7",
@@ -287,7 +287,7 @@
       }
     ]
   },
-  {
+  "19": {
     "state_name": "Iowa",
     "state_code": "IA",
     "incidence": "465.3",
@@ -312,7 +312,7 @@
       }
     ]
   },
-  {
+  "17": {
     "state_name": "Illinois",
     "state_code": "IL",
     "incidence": "463.7",
@@ -344,7 +344,7 @@
       }
     ]
   },
-  {
+  "18": {
     "state_name": "Indiana",
     "state_code": "IN",
     "incidence": "447",
@@ -376,7 +376,7 @@
       }
     ]
   },
-  {
+  "20": {
     "state_name": "Kansas",
     "state_code": "KS",
     "incidence": "455.2",
@@ -401,7 +401,7 @@
       }
     ]
   },
-  {
+  "21": {
     "state_name": "Kentucky",
     "state_code": "KY",
     "incidence": "509.9",
@@ -426,7 +426,7 @@
       }
     ]
   },
-  {
+  "25": {
     "state_name": "Massachusetts",
     "state_code": "MA",
     "incidence": "459.1",
@@ -458,7 +458,7 @@
       }
     ]
   },
-  {
+  "24": {
     "state_name": "Maryland",
     "state_code": "MD",
     "incidence": "446.2",
@@ -490,7 +490,7 @@
       }
     ]
   },
-  {
+  "23": {
     "state_name": "Maine",
     "state_code": "ME",
     "incidence": "467",
@@ -515,7 +515,7 @@
       }
     ]
   },
-  {
+  "26": {
     "state_name": "Michigan",
     "state_code": "MI",
     "incidence": "449.5",
@@ -547,7 +547,7 @@
       }
     ]
   },
-  {
+  "27": {
     "state_name": "Minnesota",
     "state_code": "MN",
     "incidence": "457",
@@ -579,7 +579,7 @@
       }
     ]
   },
-  {
+  "29": {
     "state_name": "Missouri",
     "state_code": "MO",
     "incidence": "450.4",
@@ -604,7 +604,7 @@
       }
     ]
   },
-  {
+  "37": {
     "state_name": "North Carolina",
     "state_code": "NC",
     "incidence": "457.6",
@@ -643,7 +643,7 @@
       }
     ]
   },
-  {
+  "31": {
     "state_name": "Nebraska",
     "state_code": "NE",
     "incidence": "446.8",
@@ -668,7 +668,7 @@
       }
     ]
   },
-  {
+  "33": {
     "state_name": "New Hampshire",
     "state_code": "NH",
     "incidence": "479.7",
@@ -693,7 +693,7 @@
       }
     ]
   },
-  {
+  "34": {
     "state_name": "New Jersey",
     "state_code": "NJ",
     "incidence": "477.5",
@@ -718,7 +718,7 @@
       }
     ]
   },
-  {
+  "35": {
     "state_name": "New Mexico",
     "state_code": "NM",
     "incidence": "369.7",
@@ -743,7 +743,7 @@
       }
     ]
   },
-  {
+  "36": {
     "state_name": "New York",
     "state_code": "NY",
     "incidence": "477.7",
@@ -810,7 +810,7 @@
       }
     ]
   },
-  {
+  "39": {
     "state_name": "Ohio",
     "state_code": "OH",
     "incidence": "456.3",
@@ -842,7 +842,7 @@
       }
     ]
   },
-  {
+  "41": {
     "state_name": "Oregon",
     "state_code": "OR",
     "incidence": "428.4",
@@ -867,7 +867,7 @@
       }
     ]
   },
-  {
+  "42": {
     "state_name": "Pennsylvania",
     "state_code": "PA",
     "incidence": "481.7",
@@ -920,7 +920,7 @@
       }
     ]
   },
-  {
+  "45": {
     "state_name": "South Carolina",
     "state_code": "SC",
     "incidence": "451.1",
@@ -945,7 +945,7 @@
       }
     ]
   },
-  {
+  "47": {
     "state_name": "Tennessee",
     "state_code": "TN",
     "incidence": "456.4",
@@ -977,7 +977,7 @@
       }
     ]
   },
-  {
+  "48": {
     "state_name": "Texas",
     "state_code": "TX",
     "incidence": "401.3",
@@ -1023,7 +1023,7 @@
       }
     ]
   },
-  {
+  "49": {
     "state_name": "Utah",
     "state_code": "UT",
     "incidence": "400.1",
@@ -1048,7 +1048,7 @@
       }
     ]
   },
-  {
+  "51": {
     "state_name": "Virginia",
     "state_code": "VA",
     "incidence": "414.3",
@@ -1080,7 +1080,7 @@
       }
     ]
   },
-  {
+  "53": {
     "state_name": "Washington",
     "state_code": "WA",
     "incidence": "445.5",
@@ -1105,7 +1105,7 @@
       }
     ]
   },
-  {
+  "55": {
     "state_name": "Wisconsin",
     "state_code": "WI",
     "incidence": "457.2",
@@ -1130,9 +1130,9 @@
       }
     ]
   },
-  {
+  "22": {
     "state_name": "Louisiana",
-    "state_code": "KY",
+    "state_code": "LA",
     "incidence": "475.9",
     "incidence_rank": "7",
     "mortality": "187.8",
@@ -1147,9 +1147,9 @@
     "percent_US": "0.014274531",
     "cancer_centers": []
   },
-  {
+  "40": {
     "state_name": "Oklahoma",
-    "state_code": "MD",
+    "state_code": "OK",
     "incidence": "442.6",
     "incidence_rank": "36",
     "mortality": "186",
@@ -1164,11 +1164,11 @@
     "percent_US": "0.012012596",
     "cancer_centers": []
   },
-  {
+  "32": {
     "state_name": "Nevada",
-    "state_code": "MI",
-    "incidence": NaN,
-    "incidence_rank": NaN,
+    "state_code": "NV",
+    "incidence": null,
+    "incidence_rank": null,
     "mortality": "164.1",
     "mortality_rank": "29",
     "pop_2018": "3056824",
@@ -1181,9 +1181,9 @@
     "percent_US": "0.009318664",
     "cancer_centers": []
   },
-  {
+  "5": {
     "state_name": "Arkansas",
-    "state_code": "MN",
+    "state_code": "AR",
     "incidence": "452.4",
     "incidence_rank": "24",
     "mortality": "187.5",
@@ -1198,9 +1198,9 @@
     "percent_US": "0.009207404",
     "cancer_centers": []
   },
-  {
+  "28": {
     "state_name": "Mississippi",
-    "state_code": "MN",
+    "state_code": "MS",
     "incidence": "461.6",
     "incidence_rank": "14",
     "mortality": "194.9",
@@ -1215,9 +1215,9 @@
     "percent_US": "0.009092958",
     "cancer_centers": []
   },
-  {
+  "54": {
     "state_name": "West Virginia",
-    "state_code": "NC",
+    "state_code": "WV",
     "incidence": "469.9",
     "incidence_rank": "10",
     "mortality": "193.1",
@@ -1232,9 +1232,9 @@
     "percent_US": "0.005496643",
     "cancer_centers": []
   },
-  {
+  "16": {
     "state_name": "Idaho",
-    "state_code": "NE",
+    "state_code": "ID",
     "incidence": "431.8",
     "incidence_rank": "38",
     "mortality": "155.1",
@@ -1249,9 +1249,9 @@
     "percent_US": "0.005346606",
     "cancer_centers": []
   },
-  {
+  "30": {
     "state_name": "Montana",
-    "state_code": "NY",
+    "state_code": "MT",
     "incidence": "438",
     "incidence_rank": "37",
     "mortality": "157.3",
@@ -1266,9 +1266,9 @@
     "percent_US": "0.003238491",
     "cancer_centers": []
   },
-  {
+  "44": {
     "state_name": "Rhode Island",
-    "state_code": "NY",
+    "state_code": "RI",
     "incidence": "474",
     "incidence_rank": "8",
     "mortality": "166.8",
@@ -1283,9 +1283,9 @@
     "percent_US": "0.003236607",
     "cancer_centers": []
   },
-  {
+  "10": {
     "state_name": "Delaware",
-    "state_code": "NY",
+    "state_code": "DE",
     "incidence": "493.5",
     "incidence_rank": "2",
     "mortality": "171.1",
@@ -1300,9 +1300,9 @@
     "percent_US": "0.002960622",
     "cancer_centers": []
   },
-  {
+  "46": {
     "state_name": "South Dakota",
-    "state_code": "NY",
+    "state_code": "SD",
     "incidence": "447.3",
     "incidence_rank": "29",
     "mortality": "160.3",
@@ -1317,9 +1317,9 @@
     "percent_US": "0.002675925",
     "cancer_centers": []
   },
-  {
+  "38": {
     "state_name": "North Dakota",
-    "state_code": "NY",
+    "state_code": "ND",
     "incidence": "446.3",
     "incidence_rank": "32",
     "mortality": "153.1",
@@ -1334,9 +1334,9 @@
     "percent_US": "0.002302327",
     "cancer_centers": []
   },
-  {
+  "2": {
     "state_name": "Alaska",
-    "state_code": "NY",
+    "state_code": "AK",
     "incidence": "407.5",
     "incidence_rank": "43",
     "mortality": "168.4",
@@ -1351,9 +1351,9 @@
     "percent_US": "0.002249985",
     "cancer_centers": []
   },
-  {
+  "50": {
     "state_name": "Vermont",
-    "state_code": "OH",
+    "state_code": "VT",
     "incidence": "449",
     "incidence_rank": "28",
     "mortality": "167.6",
@@ -1368,9 +1368,9 @@
     "percent_US": "0.001902129",
     "cancer_centers": []
   },
-  {
+  "56": {
     "state_name": "Wyoming",
-    "state_code": "OH",
+    "state_code": "WY",
     "incidence": "397.6",
     "incidence_rank": "47",
     "mortality": "147.6",
@@ -1385,21 +1385,21 @@
     "percent_US": "0.001748973",
     "cancer_centers": []
   },
-  {
-    "state_name": "Puerto Rico ",
-    "state_code": "OR",
-    "incidence": "354.9",
-    "incidence_rank": "51",
-    "mortality": "118.9",
-    "mortality_rank": "52",
-    "pop_2018": NaN,
-    "pop_2018_per1M": NaN,
-    "num_des_cc": NaN,
-    "people_per_cc": NaN,
-    "cc_per10M": NaN,
-    "rank_cc_per1M": NaN,
-    "growth_2018": NaN,
-    "percent_US": NaN,
+  "72": {
+    "state_name": "Puerto Rico",
+    "state_code": "PR",
+    "incidence": null,
+    "incidence_rank": null,
+    "mortality": null,
+    "mortality_rank": null,
+    "pop_2018": null,
+    "pop_2018_per1M": null,
+    "num_des_cc": null,
+    "people_per_cc": null,
+    "cc_per10M": null,
+    "rank_cc_per1M": null,
+    "growth_2018": null,
+    "percent_US": null,
     "cancer_centers": []
   }
-]
+}
