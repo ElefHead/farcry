@@ -1,18 +1,22 @@
 import pandas as pd
-from os import path, makedirs
-from json import dump
+from os import path, makedirs, listdir
+from json import dump, load
 
 
 class Constants:
     #   directories
     ROOT_DIR = path.dirname(path.abspath(path.join(__file__)))
     DATA_DIR = 'data'
+    UNFORMATTED_COUNTY_MORTALITY_RATES = 'Mortality rate by county'
+    FORMATTED_COUNTY_MORTALITY_RATES = 'Formatted Mortality rates by county'
 
     #   file names
     CANCER_CENTERS = 'cancer_center_list.csv'
     CANCER_CENTERS_PER10M = 'cancer_center_per10m.csv'
     STATE_INCIDENCE = 'state_incidence.csv'
     STATE_MORTALITY = 'state_mortality.csv'
+    UNFORMATTED_COUNTY_FIPS = 'countyFIPScodes.txt'
+    FORMATTED_COUNTY_FIPS = 'formatted_county_codes.json'
 
     #   result file names
     JSON_DUMP_CANCER_CENTER = 'state_cancer_center.json'
@@ -32,10 +36,21 @@ class Constants:
         'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin',
         'WY': 'Wyoming', 'AS': 'American Samoa', 'DC': 'District of Columbia',
         'FM': 'Federated States of Micronesia', 'GU': 'Guam', 'MH': 'Marshall Islands',
-        'MP': 'Northern Mariana Islands', 'PW': 'Palau', 'PR': 'Puerto Rico', 'VI': 'Virgin Islands'
+        'MP': 'Northern Mariana Islands', 'PW': 'Palau', 'PR': 'Puerto Rico', 'VI': 'U.S. Virgin Islands'
     }
 
-    STATE_NAMES_SHORTEN = {'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR', 'California': 'CA', 'Colorado': 'CO', 'Connecticut': 'CT', 'Delaware': 'DE', 'Florida': 'FL', 'Georgia': 'GA', 'Hawaii': 'HI', 'Idaho': 'ID', 'Illinois': 'IL', 'Indiana': 'IN', 'Iowa': 'IA', 'Kansas': 'KS', 'Kentucky': 'KY', 'Louisiana': 'LA', 'Maine': 'ME', 'Maryland': 'MD', 'Massachusetts': 'MA', 'Michigan': 'MI', 'Minnesota': 'MN', 'Mississippi': 'MS', 'Missouri': 'MO', 'Montana': 'MT', 'Nebraska': 'NE', 'Nevada': 'NV', 'New Hampshire': 'NH', 'New Jersey': 'NJ', 'New Mexico': 'NM', 'New York': 'NY', 'North Carolina': 'NC', 'North Dakota': 'ND', 'Ohio': 'OH', 'Oklahoma': 'OK', 'Oregon': 'OR', 'Pennsylvania': 'PA', 'Rhode Island': 'RI', 'South Carolina': 'SC', 'South Dakota': 'SD', 'Tennessee': 'TN', 'Texas': 'TX', 'Utah': 'UT', 'Vermont': 'VT', 'Virginia': 'VA', 'Washington': 'WA', 'West Virginia': 'WV', 'Wisconsin': 'WI', 'Wyoming': 'WY', 'American Samoa': 'AS', 'District of Columbia': 'DC', 'Federated States of Micronesia': 'FM', 'Guam': 'GU', 'Marshall Islands': 'MH', 'Northern Mariana Islands': 'MP', 'Palau': 'PW', 'Puerto Rico': 'PR', 'Virgin Islands': 'VI'}
+    STATE_NAMES_SHORTEN = {
+        'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR', 'California': 'CA', 'Colorado': 'CO', 
+        'Connecticut': 'CT', 'Delaware': 'DE', 'Florida': 'FL', 'Georgia': 'GA', 'Hawaii': 'HI', 'Idaho': 'ID', 'Illinois': 'IL', 
+        'Indiana': 'IN', 'Iowa': 'IA', 'Kansas': 'KS', 'Kentucky': 'KY', 'Louisiana': 'LA', 'Maine': 'ME', 'Maryland': 'MD', 
+        'Massachusetts': 'MA', 'Michigan': 'MI', 'Minnesota': 'MN', 'Mississippi': 'MS', 'Missouri': 'MO', 'Montana': 'MT', 
+        'Nebraska': 'NE', 'Nevada': 'NV', 'New Hampshire': 'NH', 'New Jersey': 'NJ', 'New Mexico': 'NM', 'New York': 'NY', 
+        'North Carolina': 'NC', 'North Dakota': 'ND', 'Ohio': 'OH', 'Oklahoma': 'OK', 'Oregon': 'OR', 'Pennsylvania': 'PA', 
+        'Rhode Island': 'RI', 'South Carolina': 'SC', 'South Dakota': 'SD', 'Tennessee': 'TN', 'Texas': 'TX', 'Utah': 'UT', 
+        'Vermont': 'VT', 'Virginia': 'VA', 'Washington': 'WA', 'West Virginia': 'WV', 'Wisconsin': 'WI', 'Wyoming': 'WY', 
+        'American Samoa': 'AS', 'District of Columbia': 'DC', 'Federated States of Micronesia': 'FM', 'Guam': 'GU', 
+        'Marshall Islands': 'MH', 'Northern Mariana Islands': 'MP', 'Palau': 'PW', 'Puerto Rico': 'PR', 'U.S. Virgin Islands': 'VI'
+    }
 
     #   state FIPS
     STATE_CODES = {
@@ -62,6 +77,13 @@ def read_csv(loc='', filename='', sep=',', header='infer', encoding='ISO-8859-1'
     '''
     read_path = path.join(loc, filename)
     return pd.read_csv(read_path, encoding=encoding, header=header, sep=sep, dtype=dtype)
+
+
+def read_json(loc='', filename=''):
+    file_path = path.join(loc, filename)
+    with open(file_path, 'r') as f:
+        data = load(f)
+    return data
 
 
 def read_data():
@@ -174,10 +196,59 @@ def write_json(data, loc='', filename='', indent=2):
         dump(data, jd, indent=indent)
 
 
+def rewrite_county_fips(loc, filename):
+    file_path = path.join(loc, filename)
+    fips_dict = {}
+    with open(file_path, 'r') as cfc:
+        for line in cfc:
+            county_code, county, state_code = [i.strip() for i in line.split("\t")]
+            state_name = Constants.STATE_NAME[state_code[:2].upper()]
+            state_fips = Constants.STATE_CODES[state_name]
+            if state_fips not in fips_dict:
+                fips_dict[state_fips] = {
+                    'state_name': state_name,
+                    'state_code': state_code[:2].upper(),
+                    'state_fips': state_fips,
+                    'counties': {}
+                }
+            fips_dict[state_fips]['counties'][county_code] = county
+    write_json(fips_dict, loc, Constants.FORMATTED_COUNTY_FIPS, indent=None)
+
+
+def fix_mortality_csv():
+    data_path = path.join(Constants.ROOT_DIR, Constants.DATA_DIR, Constants.UNFORMATTED_COUNTY_MORTALITY_RATES)
+    out_data_path = path.join(Constants.ROOT_DIR, Constants.DATA_DIR, Constants.FORMATTED_COUNTY_MORTALITY_RATES)
+    if not path.exists(out_data_path):
+        makedirs(out_data_path)
+    directories = listdir(data_path)
+    for directory in directories:
+        if directory[0] == '.' :
+            continue
+        data_folder = path.join(data_path, directory)
+        out_data_folder = path.join(out_data_path, directory)
+        if not path.exists(out_data_folder):
+            makedirs(out_data_folder)
+        for f in listdir(data_folder):
+            if f[0] == '.':
+                continue
+            file_path = path.join(data_folder, f)
+            out_file_path = path.join(out_data_folder, f)
+            lines = []
+            with open(file_path, 'r', encoding='ISO-8859-1') as t:
+                for line in t:
+                    if len(line.split(',')) >= 10:
+                        lines.append(line)
+            with open(out_file_path, 'w') as o:
+                for line in lines:
+                    o.write(line)
+
+
 if __name__ == '__main__':
-    data_dict = transform_data()
-    write_json(data_dict, path.join(Constants.ROOT_DIR, Constants.DATA_DIR),
-               Constants.JSON_DUMP_CANCER_CENTER)
+    fix_mortality_csv()
+    # data_dict = transform_data()
+    # rewrite_county_fips(path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.UNFORMATTED_COUNTY_FIPS)
+    # write_json(data_dict, path.join(Constants.ROOT_DIR, Constants.DATA_DIR),
+    #            Constants.JSON_DUMP_CANCER_CENTER)
 
 
 

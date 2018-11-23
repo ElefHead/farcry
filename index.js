@@ -20,6 +20,10 @@ svg.append('rect')
     .attr('width', width + margin.left + margin.right)
     .on('click', clicked);
 
+var color = d3.scalePow()
+    .domain([118, 200])
+    .range(d3.schemeReds[9]);
+
 
 Promise.all([d3.json('data/us-counties.topojson'), d3.json('data/state_cancer_center.json')])
     .then(([us, cancer_centers]) => {
@@ -50,6 +54,9 @@ function ready(us, cancer_centers) {
         .enter().append("path")
         .attr("d", path)
         .attr("class", "county-boundary")
+        .attr('fill', function(d) {
+            console.log(d);
+        })
         .on("click", reset);
 
     g.append("g")
@@ -59,18 +66,35 @@ function ready(us, cancer_centers) {
         .enter().append("path")
         .attr("d", path)
         .attr("class", "state")
+        .attr('margin', 5)
+        .attr('fill', function (d) {
+            if (d !== null) {
+                let {id} = d;
+                const state_deets = state_cancer_centers[id.toString()];
+                console.log(state_deets === undefined);
+                if (state_deets === undefined) return color(0);
+                let mortality = state_deets.mortality;
+                if (mortality === undefined)
+                    return 'gray';
+                return color(parseFloat(state_deets.mortality));
+            }else {
+                return color(0);
+            }
+        })
         .on("click", clicked);
 
 
     g.append("path")
         .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
         .attr("id", "state-borders")
-        .attr("d", path);
+        .attr("d", path)
+        .attr('transform', function(d) {
+            console.log(d);
+        });
 
 }
 
 function clicked(d) {
-    console.log(state_cancer_centers[d.id.toString()]);
     if (d3.select('.background').node() === this) return reset();
 
     if (active.node() === this) return reset();
