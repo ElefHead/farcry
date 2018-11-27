@@ -3,7 +3,7 @@ var margin = {
     bottom: 10,
     left: 10,
     right:10
-}, width = parseInt(d3.select('.viz').style('width'))
+}, width = parseInt(d3.select('#viz').style('width'))
     , width = width - margin.left - margin.right
     , mapRatio = 0.5
     , height = width * mapRatio
@@ -21,14 +21,25 @@ svg.append('rect')
     .on('click', clicked);
 
 var color = d3.scalePow()
-    .domain([118, 200])
+    .domain([118, 127])
     .range(d3.schemeReds[9]);
 
+var countyColor = d3.scaleLinear()
+    .domain([0, 5])
+    .range(d3.schemeBlues[9]);
 
-Promise.all([d3.json('data/us-counties.topojson'), d3.json('data/state_cancer_center.json')])
-    .then(([us, cancer_centers]) => {
-        ready(us, cancer_centers)
+
+Promise.all([d3.json('data/us-counties.topojson'), d3.json('data/state_cancer_center.json'), d3.json('data/counties_cancer_data.json')])
+    .then(([us, cancer_centers, counties_data]) => {
+        ready(us, cancer_centers, counties_data)
     });
+
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
+
 
 var projection = d3.geoAlbersUsa()
     .translate([width /2 , height / 2])
@@ -44,9 +55,11 @@ var g = svg.append("g")
     .attr('height', height + margin.top + margin.bottom);
 
 var state_cancer_centers = {};
+var county_cancer_data = {};
 
-function ready(us, cancer_centers) {
+function ready(us, cancer_centers, counties_data) {
     state_cancer_centers = cancer_centers;
+    county_cancer_data = counties_data;
     g.append("g")
         .attr("id", "counties")
         .selectAll("path")
@@ -55,7 +68,17 @@ function ready(us, cancer_centers) {
         .attr("d", path)
         .attr("class", "county-boundary")
         .attr('fill', function(d) {
-            console.log(d);
+            const county_fips = pad(d.id, 5);
+            const county_data = county_cancer_data[county_fips];
+            if (county_data === undefined) return "black";
+            let {breast_death_rate: br, cervical_death_rate: cr, colon_death_rate: cor, stomach_death_rate: sr} = county_data
+            if (br === null) br = 0;
+            if (cr === null) cr = 0;
+            if (cor === null) cor = 0;
+            if (sr === null) sr = 0;
+
+            const total = parseFloat(br) + parseFloat(cr) + parseFloat(cor) + parseFloat(sr);
+            return countyColor(total)
         })
         .on("click", reset);
 
@@ -71,7 +94,6 @@ function ready(us, cancer_centers) {
             if (d !== null) {
                 let {id} = d;
                 const state_deets = state_cancer_centers[id.toString()];
-                console.log(state_deets === undefined);
                 if (state_deets === undefined) return color(0);
                 let mortality = state_deets.mortality;
                 if (mortality === undefined)
@@ -87,10 +109,56 @@ function ready(us, cancer_centers) {
     g.append("path")
         .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
         .attr("id", "state-borders")
-        .attr("d", path)
-        .attr('transform', function(d) {
+        .attr("d", path);
+
+}
+
+
+function drawChart(dataset) {
+    let years = [...Array(16).keys()].map((x) => x + 2000);
+    dataset = dataset.map((x) => parseFloat(x));
+
+    var xScale = d3.scaleLinear()
+        .domain([1999, 2016]) // input
+        .range([0, width - margin.left*1.5]); // output
+
+    var yScale = d3.scaleLinear()
+        .domain([120, 230]) // input
+        .range([height/3, 0]); // output
+
+    console.log(dataset);
+    console.log(Math.min(...dataset));
+
+    var line = d3.line()
+        .x(function(d, i) {
+            return xScale(years[i]);
+        }) // set the x values for the line generator
+        .y(function(d) {
             console.log(d);
-        });
+            return yScale(d);
+        }); // set the y values for the line generator
+
+    let chartsvg = d3.select(".chart-viz").append("svg")
+        .attr("width", width + margin.left + margin.right )
+        .attr("height", height/3 + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left*2.5 + "," + margin.top/3 + ")");
+
+    chartsvg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(" + 0 + "," + height/3 + ")")
+        .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
+
+// 4. Call the y axis in a group tag
+    chartsvg.append("g")
+        .attr("class", "y axis")
+        .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
+
+// 9. Append the path, bind the data, and call the line generator
+    chartsvg.append("path")
+        .datum(dataset) // 10. Binds data to the line
+        .attr("class", "line") // Assign a class for styling
+        .attr("d", line);
 
 }
 
@@ -98,6 +166,10 @@ function clicked(d) {
     if (d3.select('.background').node() === this) return reset();
 
     if (active.node() === this) return reset();
+
+    let state_data = state_cancer_centers[d.id.toString()];
+    console.log(state_data);
+    drawChart(state_data.mortality_by_year.Rate);
 
     active.classed("active", false);
     active = d3.select(this).classed("active", true);
@@ -120,6 +192,10 @@ function clicked(d) {
 function reset() {
     active.classed("active", false);
     active = d3.select(null);
+
+    d3.select(".chart-viz")
+        .selectAll("svg")
+        .remove();
 
     g.transition()
         .delay(100)

@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FARCRY</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="viz"></div>
+    <div class="container full-height">
+        <section id="viz-section" class="full-width">
+            <div class="row center-items full-width">
+                <div class="col-12 center-container full-width">
+                    <div class="viz center-container full-width" id="viz"></div>
+                </div>
+            </div>
+            <div class="row center-items full-width">
+                <div class="col-12 center-container full-width">
+                    <div class="chart-viz center-container full-width"></div>
+                </div>
+            </div>
+            <div class="row"></div>
+            <div class="row"></div>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
-    <script type="text/javascript" src="http://d3js.org/topojson.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
