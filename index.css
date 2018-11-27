@@ -19,6 +19,11 @@ html, body {
     cursor: pointer;
 }
 
+.margin-top-bottom {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .center-container {
     margin: 0 auto;
     align-self: center;

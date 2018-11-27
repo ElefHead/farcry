@@ -141,13 +141,14 @@ function drawChart(dataset) {
     let chartsvg = d3.select(".chart-viz").append("svg")
         .attr("width", width + margin.left + margin.right )
         .attr("height", height/3 + margin.top + margin.bottom)
+        .attr('class', 'margin-top-bottom')
         .append("g")
         .attr("transform", "translate(" + margin.left*2.5 + "," + margin.top/3 + ")");
 
     chartsvg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(" + 0 + "," + height/3 + ")")
-        .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
+        .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))); // Create an axis component with d3.axisBottom
 
 // 4. Call the y axis in a group tag
     chartsvg.append("g")
