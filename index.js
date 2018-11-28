@@ -115,26 +115,41 @@ function ready(us, cancer_centers, counties_data) {
 
 
 function drawChart(dataset) {
+    // console.log(dataset);
+
     let years = [...Array(16).keys()].map((x) => x + 2000);
-    dataset = dataset.map((x) => parseFloat(x));
+    dataset = dataset.map((ds) => ds.map((x) => parseFloat(x.replace(',',''))));
+
+    let domain_min = Number.POSITIVE_INFINITY;
+    let domain_max = Number.NEGATIVE_INFINITY;
+
+    for (let i=0; i< dataset.length; i++) {
+        console.log(i, dataset[i]);
+        let current_min = Math.min(...dataset[i]);
+        let current_max = Math.max(...dataset[i]);
+        console.log(current_min, current_max);
+        if (current_min < domain_min)
+            domain_min = current_min;
+        if (current_max > domain_max)
+            domain_max = current_max;
+    }
+
+    console.log(domain_max, domain_min);
 
     var xScale = d3.scaleLinear()
         .domain([1999, 2016]) // input
         .range([0, width - margin.left*1.5]); // output
 
     var yScale = d3.scaleLinear()
-        .domain([120, 230]) // input
+        .domain([domain_min-100, domain_max+100]) // input
         .range([height/3, 0]); // output
 
-    console.log(dataset);
-    console.log(Math.min(...dataset));
 
     var line = d3.line()
         .x(function(d, i) {
             return xScale(years[i]);
         }) // set the x values for the line generator
         .y(function(d) {
-            console.log(d);
             return yScale(d);
         }); // set the y values for the line generator
 
@@ -156,10 +171,13 @@ function drawChart(dataset) {
         .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
 
 // 9. Append the path, bind the data, and call the line generator
-    chartsvg.append("path")
-        .datum(dataset) // 10. Binds data to the line
-        .attr("class", "line") // Assign a class for styling
-        .attr("d", line);
+    dataset.map((ds) => {
+        chartsvg.append("path")
+            .datum(ds) // 10. Binds data to the line
+            .attr("class", "line") // Assign a class for styling
+            .attr("d", line);
+    });
+
 
 }
 
@@ -169,8 +187,14 @@ function clicked(d) {
     if (active.node() === this) return reset();
 
     let state_data = state_cancer_centers[d.id.toString()];
-    console.log(state_data);
-    drawChart(state_data.mortality_by_year.Rate);
+    // console.log(state_data);
+    // console.log(state_data.mortality_by_year.Rate);
+
+    let {RateFemale:mortalityFemale, RateMale:mortalityMale, RateTotal:mortalityTotal} = state_data.gender_mortality_by_year;
+    let {RateWhite, RateOther, RateBlack, RateAll} = state_data.race_mortality_by_year;
+
+    drawChart([mortalityFemale, mortalityMale, mortalityTotal]);
+    drawChart([RateWhite, RateOther, RateBlack, RateAll]);
 
     active.classed("active", false);
     active = d3.select(this).classed("active", true);
