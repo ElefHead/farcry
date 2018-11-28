@@ -115,7 +115,6 @@ function ready(us, cancer_centers, counties_data) {
 
 
 function drawChart(dataset) {
-    // console.log(dataset);
 
     let years = [...Array(16).keys()].map((x) => x + 2000);
     dataset = dataset.map((ds) => ds.map((x) => parseFloat(x.replace(',',''))));
@@ -138,7 +137,7 @@ function drawChart(dataset) {
 
     var xScale = d3.scaleLinear()
         .domain([1999, 2016]) // input
-        .range([0, width - margin.left*1.5]); // output
+        .range([0, width - margin.left*2.5]); // output
 
     var yScale = d3.scaleLinear()
         .domain([domain_min-100, domain_max+100]) // input
@@ -158,7 +157,7 @@ function drawChart(dataset) {
         .attr("height", height/3 + margin.top + margin.bottom)
         .attr('class', 'margin-top-bottom')
         .append("g")
-        .attr("transform", "translate(" + margin.left*2.5 + "," + margin.top/3 + ")");
+        .attr("transform", "translate(" + margin.left*3 + "," + margin.top/3 + ")");
 
     chartsvg.append("g")
         .attr("class", "x axis")
@@ -168,7 +167,7 @@ function drawChart(dataset) {
 // 4. Call the y axis in a group tag
     chartsvg.append("g")
         .attr("class", "y axis")
-        .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
+        .call(d3.axisLeft(yScale).tickFormat(d3.format("d"))); // Create an axis component with d3.axisLeft
 
 // 9. Append the path, bind the data, and call the line generator
     dataset.map((ds) => {
@@ -182,6 +181,10 @@ function drawChart(dataset) {
 }
 
 function clicked(d) {
+    d3.select(".chart-viz")
+        .selectAll("svg")
+        .remove();
+
     if (d3.select('.background').node() === this) return reset();
 
     if (active.node() === this) return reset();
