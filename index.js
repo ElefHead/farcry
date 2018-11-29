@@ -114,7 +114,7 @@ function ready(us, cancer_centers, counties_data) {
 }
 
 
-function drawChart(dataset) {
+function drawChart(dataset, desc=[]) {
 
     let years = [...Array(16).keys()].map((x) => x + 2000);
     dataset = dataset.map((ds) => ds.map((x) => parseFloat(x.replace(',',''))));
@@ -123,17 +123,17 @@ function drawChart(dataset) {
     let domain_max = Number.NEGATIVE_INFINITY;
 
     for (let i=0; i< dataset.length; i++) {
-        console.log(i, dataset[i]);
+        // console.log(i, dataset[i]);
         let current_min = Math.min(...dataset[i]);
         let current_max = Math.max(...dataset[i]);
-        console.log(current_min, current_max);
+        // console.log(current_min, current_max);
         if (current_min < domain_min)
             domain_min = current_min;
         if (current_max > domain_max)
             domain_max = current_max;
     }
 
-    console.log(domain_max, domain_min);
+    // console.log(domain_max, domain_min);
 
     var xScale = d3.scaleLinear()
         .domain([1999, 2016]) // input
@@ -170,12 +170,24 @@ function drawChart(dataset) {
         .call(d3.axisLeft(yScale).tickFormat(d3.format("d"))); // Create an axis component with d3.axisLeft
 
 // 9. Append the path, bind the data, and call the line generator
-    dataset.map((ds) => {
+    dataset.map((ds, i) => {
         chartsvg.append("path")
             .datum(ds) // 10. Binds data to the line
             .attr("class", "line") // Assign a class for styling
-            .attr("d", line);
+            .attr("d", line)
+            .attr("stroke", desc[i].color);
     });
+
+    const legend = d3.select(".chart-viz")
+        .append('div')
+        .attr("class", "legend");
+
+    for (var y in desc) {
+        console.log(y);
+        series = legend.append('div');
+        series.append('div').attr("class", "series-marker").style("background-color", desc[y].color)
+            .append('p').text(desc[y].label);
+    }
 
 
 }
@@ -183,6 +195,10 @@ function drawChart(dataset) {
 function clicked(d) {
     d3.select(".chart-viz")
         .selectAll("svg")
+        .remove();
+
+    d3.select(".chart-viz")
+        .selectAll("div")
         .remove();
 
     if (d3.select('.background').node() === this) return reset();
@@ -196,8 +212,17 @@ function clicked(d) {
     let {RateFemale:mortalityFemale, RateMale:mortalityMale, RateTotal:mortalityTotal} = state_data.gender_mortality_by_year;
     let {RateWhite, RateOther, RateBlack, RateAll} = state_data.race_mortality_by_year;
 
-    drawChart([mortalityFemale, mortalityMale, mortalityTotal]);
-    drawChart([RateWhite, RateOther, RateBlack, RateAll]);
+    drawChart([mortalityFemale, mortalityMale, mortalityTotal], [
+        {color: 'red', label: 'Female'},
+        {color: 'blue', label: 'Male'},
+        {color: 'black', label: 'Both'}
+        ]);
+    drawChart([RateWhite, RateOther, RateBlack, RateAll], [
+        {color: 'red', label: 'White'},
+        {color: 'blue', label: 'Other'},
+        {color: 'black', label: 'Black'},
+        {color: 'green', label: 'All'}
+        ]);
 
     active.classed("active", false);
     active = d3.select(this).classed("active", true);
@@ -223,6 +248,10 @@ function reset() {
 
     d3.select(".chart-viz")
         .selectAll("svg")
+        .remove();
+
+    d3.select(".chart-viz")
+        .selectAll("div")
         .remove();
 
     g.transition()

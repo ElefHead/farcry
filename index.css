@@ -165,7 +165,6 @@ span.subtext {
 
 .line {
     fill: none;
-    stroke: #ffab00;
     stroke-width: 3;
 }
 
@@ -178,4 +177,28 @@ span.subtext {
 .dot {
     fill: #ffab00;
     stroke: #fff;
+}
+
+.legend  {
+    height: 2em;
+    min-width: 200px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+
+}
+
+.series-marker {
+    height: 2em;
+    border-radius: 10%;
+    background-color: crimson;
+    display: inline-block;
+    margin-right: 4px;
+    text-decoration-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    line-height: 2em;
+    color: white;
 }
