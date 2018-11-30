@@ -158,6 +158,11 @@ function drawChart(dataset, uniq, desc=[], title='') {
         .append("h3")
         .text(title);
 
+    d3.select(".chart-viz")
+        .append("div")
+        .attr('id', 'charttip-container'+uniq)
+        .attr('class', 'charttip-container');
+
     let chartsvg = d3.select(".chart-viz").append("svg")
         .attr("width", width + margin.left + margin.right )
         .attr("height", height/3 + margin.top + margin.bottom)
@@ -189,7 +194,46 @@ function drawChart(dataset, uniq, desc=[], title='') {
             .attr("cx", function(d, i) { return xScale(years[i]) })
             .attr("cy", function(d) { return yScale(d) })
             .attr("r", 3)
-            .attr("fill", desc[i].color);
+            .attr("fill", desc[i].color)
+            .on("mousemove", function(d, index) {
+                console.log(d);
+                if (active.node() === this) return;
+
+                var html = "";
+
+                html += "<div class=\"tooltip_kv\">";
+                html += "<span class=\"tooltip_key\">";
+                html += desc[i].label;
+                html += "</span>";
+                html += "<span class=\"tooltip_value\">" + years[index] + ": ";
+                html += d;
+                html += "";
+                html += "</span>";
+                html += "</div>";
+
+                $("#charttip-container"+uniq).html(html);
+                $(this).attr("fill-opacity", "0.8");
+                $("#charttip-container"+uniq).show();
+
+                // var coordinates = d3.mouse(this);
+
+                var map_width = $('.chart-viz')[0].getBoundingClientRect().width;
+                console.log(map_width);
+
+                if (d3.event.layerX < map_width / 2) {
+                    d3.select("#charttip-container"+uniq)
+                        .style("top", (d3.event.layerY + 15) + "px")
+                        .style("left", (d3.event.layerX + 15) + "px");
+                } else {
+                    var tooltip_width = $("#charttip-container"+uniq).width();
+                    d3.select("#charttip-container"+uniq)
+                        .style("top", (d3.event.layerY + 15) + "px")
+                        .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+                }
+            })
+            .on('mouseout', function () {
+                $('#charttip-container'+uniq).hide();
+            });
     });
 
     const legend = d3.select(".chart-viz")
@@ -200,16 +244,15 @@ function drawChart(dataset, uniq, desc=[], title='') {
         console.log(y);
         series = legend.append('div');
         series.append('div').attr("class", "series-marker " + "series-marker"+uniq+desc[y].color).style("background-color", desc[y].color)
-            .append('p').text(desc[y].label)
             .on('click', function() {
-                let selector = '.'+$(this).parent().attr('class').replaceAll('series-marker', '').trim();
-                console.log(selector);
+                let selector = '.'+$(this).attr('class').replaceAll('series-marker', '').trim();
                 if($(selector).css('display') !== 'none') {
                     $(selector).css('display', 'none')
                 }else{
                     $(selector).css('display', 'inline')
                 }
-            });
+            })
+            .append('p').text(desc[y].label);
     }
 
 
@@ -246,7 +289,7 @@ function clicked(d) {
             {color: 'red', label: 'Female'},
             {color: 'blue', label: 'Male'},
             {color: 'black', label: 'Both'}
-        ], 'Gender based Age-Adjusted Mortality Rate');
+        ], 'Gender based Age-Adjusted Death Rate');
     drawChart([RateWhite, RateOther, RateBlack, RateAll],
         'ethnicity',
         [

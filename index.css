@@ -85,7 +85,7 @@ html, body {
     z-index: 100;
 }
 
-#gridtip-container {
+.charttip-container {
     position: absolute;
     background-color: #fff;
     color: #000;
