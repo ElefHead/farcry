@@ -114,10 +114,10 @@ function ready(us, cancer_centers, counties_data) {
 }
 
 
-function drawChart(dataset, desc=[]) {
+function drawChart(dataset, uniq, desc=[], title='') {
 
     let years = [...Array(16).keys()].map((x) => x + 2000);
-    dataset = dataset.map((ds) => ds.map((x) => parseFloat(x.replace(',',''))));
+    dataset = dataset.map((ds) => ds.map((x) => parseFloat(x.replaceAll(',',''))));
 
     let domain_min = Number.POSITIVE_INFINITY;
     let domain_max = Number.NEGATIVE_INFINITY;
@@ -152,10 +152,15 @@ function drawChart(dataset, desc=[]) {
             return yScale(d);
         }); // set the y values for the line generator
 
+    d3.select(".chart-viz")
+        .append("div")
+        .attr('class', 'margin-top center-items')
+        .append("h3")
+        .text(title);
+
     let chartsvg = d3.select(".chart-viz").append("svg")
         .attr("width", width + margin.left + margin.right )
         .attr("height", height/3 + margin.top + margin.bottom)
-        .attr('class', 'margin-top-bottom')
         .append("g")
         .attr("transform", "translate(" + margin.left*3 + "," + margin.top/3 + ")");
 
@@ -173,9 +178,18 @@ function drawChart(dataset, desc=[]) {
     dataset.map((ds, i) => {
         chartsvg.append("path")
             .datum(ds) // 10. Binds data to the line
-            .attr("class", "line") // Assign a class for styling
+            .attr("class", "line "+uniq+desc[i].color) // Assign a class for styling
             .attr("d", line)
             .attr("stroke", desc[i].color);
+
+        chartsvg.selectAll(".dot"+i)
+            .data(ds).enter()
+            .append('circle')
+            .attr("class", "dot " + uniq + desc[i].color) // Assign a class for styling
+            .attr("cx", function(d, i) { return xScale(years[i]) })
+            .attr("cy", function(d) { return yScale(d) })
+            .attr("r", 3)
+            .attr("fill", desc[i].color);
     });
 
     const legend = d3.select(".chart-viz")
@@ -185,12 +199,26 @@ function drawChart(dataset, desc=[]) {
     for (var y in desc) {
         console.log(y);
         series = legend.append('div');
-        series.append('div').attr("class", "series-marker").style("background-color", desc[y].color)
-            .append('p').text(desc[y].label);
+        series.append('div').attr("class", "series-marker " + "series-marker"+uniq+desc[y].color).style("background-color", desc[y].color)
+            .append('p').text(desc[y].label)
+            .on('click', function() {
+                let selector = '.'+$(this).parent().attr('class').replaceAll('series-marker', '').trim();
+                console.log(selector);
+                if($(selector).css('display') !== 'none') {
+                    $(selector).css('display', 'none')
+                }else{
+                    $(selector).css('display', 'inline')
+                }
+            });
     }
 
 
 }
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
 
 function clicked(d) {
     d3.select(".chart-viz")
@@ -212,17 +240,22 @@ function clicked(d) {
     let {RateFemale:mortalityFemale, RateMale:mortalityMale, RateTotal:mortalityTotal} = state_data.gender_mortality_by_year;
     let {RateWhite, RateOther, RateBlack, RateAll} = state_data.race_mortality_by_year;
 
-    drawChart([mortalityFemale, mortalityMale, mortalityTotal], [
-        {color: 'red', label: 'Female'},
-        {color: 'blue', label: 'Male'},
-        {color: 'black', label: 'Both'}
-        ]);
-    drawChart([RateWhite, RateOther, RateBlack, RateAll], [
-        {color: 'red', label: 'White'},
-        {color: 'blue', label: 'Other'},
-        {color: 'black', label: 'Black'},
-        {color: 'green', label: 'All'}
-        ]);
+    drawChart([mortalityFemale, mortalityMale, mortalityTotal],
+        'gender',
+        [
+            {color: 'red', label: 'Female'},
+            {color: 'blue', label: 'Male'},
+            {color: 'black', label: 'Both'}
+        ], 'Gender based Age-Adjusted Mortality Rate');
+    drawChart([RateWhite, RateOther, RateBlack, RateAll],
+        'ethnicity',
+        [
+            {color: 'red', label: 'White'},
+            {color: 'blue', label: 'Other'},
+            {color: 'black', label: 'Black'},
+            {color: 'green', label: 'All'}
+        ],
+        'Ethnicity based Age-Adjusted Death Rate');
 
     active.classed("active", false);
     active = d3.select(this).classed("active", true);
