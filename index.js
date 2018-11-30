@@ -196,7 +196,6 @@ function drawChart(dataset, uniq, desc=[], title='') {
             .attr("r", 3)
             .attr("fill", desc[i].color)
             .on("mousemove", function(d, index) {
-                console.log(d);
                 if (active.node() === this) return;
 
                 var html = "";
@@ -218,7 +217,6 @@ function drawChart(dataset, uniq, desc=[], title='') {
                 // var coordinates = d3.mouse(this);
 
                 var map_width = $('.chart-viz')[0].getBoundingClientRect().width;
-                console.log(map_width);
 
                 if (d3.event.layerX < map_width / 2) {
                     d3.select("#charttip-container"+uniq)
