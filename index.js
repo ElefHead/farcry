@@ -383,7 +383,7 @@ function clicked(d) {
     $('#counties').css('display', 'block');
     $('.state-white').css('display', 'block');
     $('.state-white'+d.id).css('display', 'none');
-
+    $('.state').css('display', 'none');
     d3.select(".chart-viz")
         .selectAll("svg")
         .remove();
@@ -442,6 +442,8 @@ function reset() {
     $('#counties').css('display', 'none');
     $('.state-white').css('display', 'block');
     $('.viz-buttons').css('display', 'block');
+    $('.state').css('display', 'block');
+
     active.classed("active", false);
     active = d3.select(null);
 
