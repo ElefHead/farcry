@@ -21,7 +21,7 @@ svg.append('rect')
     .on('click', clicked);
 
 var color = d3.scalePow()
-    .domain([118, 127])
+    .domain([118, 130])
     .range(d3.schemeReds[9]);
 
 var countyColor = d3.scaleLinear()
@@ -132,6 +132,7 @@ function ready(us, cancer_centers, counties_data) {
             }
         })
         .on('slide', changeColor)
+        .on('change', changeColor)
         .data('slider');
 
     var resized = false;
