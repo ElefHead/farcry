@@ -209,3 +209,7 @@ span.subtext {
     color: white;
     cursor: pointer;
 }
+
+#slider .slider-selection {
+    background: #BABABA;
+}
