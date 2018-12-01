@@ -58,6 +58,7 @@ var state_cancer_centers = {};
 var county_cancer_data = {};
 
 function ready(us, cancer_centers, counties_data) {
+
     state_cancer_centers = cancer_centers;
     county_cancer_data = counties_data;
     g.append("g")
@@ -83,6 +84,20 @@ function ready(us, cancer_centers, counties_data) {
         .on("click", reset);
 
     g.append("g")
+        .attr("id", "states-white")
+        .selectAll("path")
+        .data(topojson.feature(us, us.objects.states).features)
+        .enter().append("path")
+        .attr("d", path)
+        .attr("class", function (d) {
+            return "state-white state-white"+d.id;
+        })
+        .attr('margin', 5)
+        .attr('fill', "white")
+        .attr('stroke', 'black')
+        .on("click", clicked);
+
+    g.append("g")
         .attr("id", "states")
         .selectAll("path")
         .data(topojson.feature(us, us.objects.states).features)
@@ -91,17 +106,17 @@ function ready(us, cancer_centers, counties_data) {
         .attr("class", "state")
         .attr('margin', 5)
         .attr('fill', function (d) {
-            if (d !== null) {
-                let {id} = d;
-                const state_deets = state_cancer_centers[id.toString()];
-                if (state_deets === undefined) return color(0);
-                let mortality = state_deets.mortality;
-                if (mortality === undefined)
-                    return 'gray';
-                return color(parseFloat(state_deets.mortality));
-            }else {
-                return color(0);
+            let {id} = d;
+            const state_deets = state_cancer_centers[id.toString()];
+            if (state_deets === undefined) return color(0);
+            const {mortality_by_year: myr} = state_deets;
+            if (myr === undefined) {
+                return 'gray';
             }
+            let mortality = myr.Rate[0];
+            if (mortality === undefined || mortality===null)
+                return 'gray';
+            return color(parseFloat(mortality));
         })
         .on("click", clicked);
 
@@ -110,6 +125,102 @@ function ready(us, cancer_centers, counties_data) {
         .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
         .attr("id", "state-borders")
         .attr("d", path);
+
+    var sl = $('#slider').slider({
+            formatter(value) {
+                return 'Year: ' + value;
+            }
+        })
+        .on('slide', changeColor)
+        .data('slider');
+
+    var resized = false;
+
+    function changeColor() {
+        let year = sl.getValue();
+        g.selectAll('.state')
+            .attr('fill', function(d) {
+                let {id} = d;
+                const state_deets = state_cancer_centers[id.toString()];
+                if (state_deets === undefined) return color(0);
+                const {mortality_by_year: myr} = state_deets;
+                if (myr === undefined) {
+                    return 'gray';
+                }
+                let mortality = myr.Rate[year - 2000];
+                if (mortality === undefined || mortality===null)
+                    return 'gray';
+                return color(parseFloat(mortality));
+            });
+        if (resized) {
+            resizeByFunding();
+        }
+    }
+
+    function resizeByFunding(dur=0) {
+        let year = sl.getValue();
+        resized = true;
+        g.selectAll('.state')
+            .transition()
+            .duration(dur)
+            .attr("transform", function (d) {
+                let {id} = d;
+                const state_deets = state_cancer_centers[id.toString()];
+                var centroid = path.centroid(d),
+                    x = centroid[0],
+                    y = centroid[1];
+                if (isNaN(x) || isNaN(y))
+                    return null;
+                else {
+                    let {state_name} = state_deets;
+                    let {TotalAmount: funding} = state_deets.funding_by_year;
+                    let {Rate: mortality_rate} = state_deets.mortality_by_year;
+                    let fund = parseFloat(funding[year - 2000]);
+                    let mrate = parseFloat(mortality_rate[year - 2000]);
+                    if (fund === 0) {
+                        return "translate(" + x + "," + y + ")"
+                            + "scale(" + 0 + ")"
+                            + "translate(" + -x + "," + -y + ")";
+                        ;
+                    }
+                    else {
+                        let index = fund / mrate;
+                        let scale_factor = index / 2362.209;
+                        return "translate(" + x + "," + y + ")"
+                            + "scale(" + scale_factor + ")"
+                            + "translate(" + -x + "," + -y + ")";
+                    }
+                }
+            });
+    }
+
+    function resetToOriginal() {
+        resized = false;
+        g.selectAll('.state')
+            .transition()
+            .duration(1000)
+            .attr("transform", function(d) {
+                var centroid = path.centroid(d),
+                    x = centroid[0],
+                    y = centroid[1];
+                if (isNaN(x) || isNaN(y))
+                    return null;
+                else {
+                    return "translate(" + x + "," + y + ")"
+                        + "scale(" + 1 + ")"
+                        + "translate(" + -x + "," + -y + ")";
+                }
+            });
+    }
+
+    d3.select('#resize')
+        .on('click', function () {
+            resizeByFunding(1000)
+        });
+
+    d3.select('#reset')
+        .on('click', resetToOriginal);
+
 
 }
 
@@ -239,7 +350,6 @@ function drawChart(dataset, uniq, desc=[], title='') {
         .attr("class", "legend");
 
     for (var y in desc) {
-        console.log(y);
         series = legend.append('div');
         series.append('div').attr("class", "series-marker " + "series-marker"+uniq+desc[y].color).style("background-color", desc[y].color)
             .on('click', function() {
@@ -262,6 +372,17 @@ String.prototype.replaceAll = function(search, replacement) {
 };
 
 function clicked(d) {
+
+    if (d===undefined) {
+        return null;
+    }
+
+    $('.viz-buttons').css('display', 'none');
+
+    $('#counties').css('display', 'block');
+    $('.state-white').css('display', 'block');
+    $('.state-white'+d.id).css('display', 'none');
+
     d3.select(".chart-viz")
         .selectAll("svg")
         .remove();
@@ -317,6 +438,9 @@ function clicked(d) {
 
 
 function reset() {
+    $('#counties').css('display', 'none');
+    $('.state-white').css('display', 'block');
+    $('.viz-buttons').css('display', 'block');
     active.classed("active", false);
     active = d3.select(null);
 

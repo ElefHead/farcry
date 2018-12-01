@@ -1,9 +1,26 @@
-from os import path, listdir
+from os import path, listdir, makedirs
 from constants import Constants
 
-from state_data_transform import read_json, read_csv, write_json, makedirs
+from state_data_transform import read_json, read_csv, write_json
 
 import numpy as np
+
+
+def read_county_fips(loc, filename):
+    file_path = path.join(loc, filename)
+    county_fips = {}
+    with open(file_path, 'r') as cfc:
+        for line in cfc:
+            county_code, county, state_code = [i.strip() for i in line.split("\t")]
+            state_name = Constants.STATE_NAME[state_code[:2].upper()]
+            state_fips = Constants.STATE_CODES[state_name]
+            county_fips[county_code] = {
+                'county_code': county_code,
+                'state_name': state_name,
+                'state_code': state_code[:2].upper(),
+                'state_fips': state_fips
+            }
+    return county_fips
 
 
 def rewrite_county_fips(loc, filename):

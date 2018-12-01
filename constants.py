@@ -20,10 +20,12 @@ class Constants:
     GENDER_MORTALITY_BY_YEAR = 'gender_mortality_by_year.csv'
     MORTALITY_BY_YEAR = 'mortality_by_year.csv'
     RACE_MORTALITY_BY_YEAR = 'race_mortality_by_year.csv'
+    TOPOJSON_FILE = 'us-counties.topojson'
 
     #   result file names
     JSON_DUMP_CANCER_CENTER = 'state_cancer_center.json'
     JSON_DUMP_COUNTY_DATA = 'counties_cancer_data.json'
+    TOPOJSON_DUMP_FILE = 'new-us-counties.topojson'
 
     #   state names
     STATE_NAME = {
