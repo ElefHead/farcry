@@ -83,6 +83,20 @@ function ready(us, cancer_centers, counties_data) {
         .on("click", reset);
 
     g.append("g")
+        .attr("id", "states-white")
+        .selectAll("path")
+        .data(topojson.feature(us, us.objects.states).features)
+        .enter().append("path")
+        .attr("d", path)
+        .attr("class", function (d) {
+            return "state-white state-white"+d.id;
+        })
+        .attr('margin', 5)
+        .attr('fill', "white")
+        .attr('stroke', 'black')
+        .on("click", clicked);
+
+    g.append("g")
         .attr("id", "states")
         .selectAll("path")
         .data(topojson.feature(us, us.objects.states).features)
@@ -111,6 +125,61 @@ function ready(us, cancer_centers, counties_data) {
         .attr("id", "state-borders")
         .attr("d", path);
 
+    d3.select('#resize')
+        .on('click', function() {
+
+            g.selectAll('.state')
+                .transition()
+                .duration(1000)
+                .attr("transform", function (d) {
+                    let {id} = d;
+                    const state_deets = state_cancer_centers[id.toString()];
+                    var centroid = path.centroid(d),
+                        x = centroid[0],
+                        y = centroid[1];
+                    if (isNaN(x) || isNaN(y))
+                        return null;
+                    else {
+                        let {state_name} = state_deets;
+                        let {TotalAmount: funding} = state_deets.funding_by_year;
+                        let {Rate: mortality_rate} = state_deets.mortality_by_year;
+                        let fund = parseFloat(funding[0]);
+                        let mrate = parseFloat(mortality_rate[0]);
+                        if (fund === 0) {
+                            return "translate(" + x + "," + y + ")"
+                                + "scale(" + 0 + ")"
+                                + "translate(" + -x + "," + -y + ")";
+                            ;
+                        }
+                        else {
+                            let index = fund / mrate;
+                            let scale_factor = index / 2362.209;
+                            return "translate(" + x + "," + y + ")"
+                                + "scale(" + scale_factor + ")"
+                                + "translate(" + -x + "," + -y + ")";
+                        }
+                    }
+                });
+        });
+
+    d3.select('#reset')
+        .on('click', function() {
+            g.selectAll('.state')
+                .transition()
+                .duration(1000)
+                .attr("transform", function(d) {
+                    var centroid = path.centroid(d),
+                        x = centroid[0],
+                        y = centroid[1];
+                    if (isNaN(x) || isNaN(y))
+                        return null;
+                    else {
+                        return "translate(" + x + "," + y + ")"
+                            + "scale(" + 1 + ")"
+                            + "translate(" + -x + "," + -y + ")";
+                    }
+                })
+        })
 }
 
 
@@ -239,7 +308,6 @@ function drawChart(dataset, uniq, desc=[], title='') {
         .attr("class", "legend");
 
     for (var y in desc) {
-        console.log(y);
         series = legend.append('div');
         series.append('div').attr("class", "series-marker " + "series-marker"+uniq+desc[y].color).style("background-color", desc[y].color)
             .on('click', function() {
@@ -262,6 +330,17 @@ String.prototype.replaceAll = function(search, replacement) {
 };
 
 function clicked(d) {
+
+    if (d===undefined) {
+        return null;
+    }
+
+    $('.viz-buttons').css('display', 'none');
+
+    $('#counties').css('display', 'block');
+    $('.state-white').css('display', 'block');
+    $('.state-white'+d.id).css('display', 'none');
+
     d3.select(".chart-viz")
         .selectAll("svg")
         .remove();
@@ -317,6 +396,9 @@ function clicked(d) {
 
 
 function reset() {
+    $('#counties').css('display', 'none');
+    $('.state-white').css('display', 'block');
+    $('.viz-buttons').css('display', 'block');
     active.classed("active", false);
     active = d3.select(null);
 
