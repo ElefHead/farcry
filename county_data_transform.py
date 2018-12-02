@@ -124,7 +124,6 @@ def transform_county_data():
             all_cancer_data = read_csv(county_cancer_folders['all'], f.replace(' death',''))
 
         state_name = f[:-10].strip()
-        print("state name", state_name, f)
         state_name = state_name[0].upper() + state_name[1:]
         state_fips = str(Constants.STATE_CODES[state_name])
         state_short_name = Constants.STATE_NAMES_SHORTEN[state_name]
@@ -364,7 +363,9 @@ def transform_county_data():
                 county_data[fips]['all_recent_trend'] = recent_trend if recent_trend else None
                 county_data[fips]['all_recent_5_year'] = recent_5_year if recent_5_year else None
                 county_data[fips]['all_annual_average_count'] = annual_count if annual_count else None
-
+        if "arizona" in f.lower():
+            print(all_cancer_data.shape)
+            print(f)
     return county_data
 
 
