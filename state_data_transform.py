@@ -277,7 +277,7 @@ def isolate_cancer_centers(data):
 if __name__ == '__main__':
     data = read_json(path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_STATES_CANCER_CENTERS)
     cancer_centers = isolate_cancer_centers(data)
-    write_json(cancer_centers, path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER, None)
+    write_json(list(cancer_centers.values()), path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER, None)
 
 
 

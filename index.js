@@ -25,13 +25,13 @@ var color = d3.scalePow()
     .range(d3.schemeReds[9]);
 
 var countyColor = d3.scaleLinear()
-    .domain([90, 110])
+    .domain([70, 85])
     .range(d3.schemeReds[9]);
 
 
-Promise.all([d3.json('data/us-counties.topojson'), d3.json('data/state_cancer_center.json'), d3.json('data/counties_cancer_data.json')])
-    .then(([us, cancer_centers, counties_data]) => {
-        ready(us, cancer_centers, counties_data)
+Promise.all([d3.json('data/us-counties.topojson'), d3.json('data/state_cancer_center.json'), d3.json('data/cancer_centers_list.json'), d3.json('data/counties_cancer_data.json')])
+    .then(([us, cancer_centers, cancer_center_list, counties_data]) => {
+        ready(us, cancer_centers, cancer_center_list, counties_data)
     });
 
 function pad(num, size) {
@@ -41,7 +41,7 @@ function pad(num, size) {
 }
 
 
-var projection = d3.geoAlbersUsa()
+const projection = d3.geoAlbersUsa()
     .translate([width /2 , height / 2])
     .scale(width);
 
@@ -56,10 +56,11 @@ var g = svg.append("g")
 
 var state_cancer_centers = {};
 var county_cancer_data = {};
+var isolated_cancer_centers = {};
 
 
-function ready(us, cancer_centers, counties_data) {
-
+function ready(us, cancer_centers, cancer_center_list, counties_data) {
+    isolated_cancer_centers = cancer_center_list;
     state_cancer_centers = cancer_centers;
     county_cancer_data = counties_data;
     g.append("g")
@@ -237,11 +238,86 @@ function ready(us, cancer_centers, counties_data) {
         })
         .on("click", clicked);
 
-
     g.append("path")
         .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
         .attr("id", "state-borders")
-        .attr("d", path);
+        .attr("d", path)
+        .attr('stroke', 'black');
+
+    g.append('g')
+        .attr("id", "cancer-centers")
+        .selectAll(".center-dots")
+        .data(cancer_center_list)
+        .enter().append('a')
+        .attr('href', function (d) {
+            return d.link;
+        })
+        .attr('target', '_blank')
+        .append('circle')
+        .attr('class', 'center-dots')
+        .attr('cx', function (d) {
+            let {lat, lon} = d;
+            let coords = projection([parseFloat(lon), parseFloat(lat)]);
+            return coords[0];
+        })
+        .attr('id', function (d) {
+            return d.name;
+        })
+        .attr('cy', function(d) {
+            let {lat, lon} = d;
+            let coords = projection([parseFloat(lon), parseFloat(lat)]);
+            return coords[1];
+        })
+        .attr('fill', function(d) {
+            let {type} = d;
+            if (type === "Comp") {
+                return 'darkblue';
+            }else if (type === "Clinical") {
+                return 'blue';
+            }else {
+                return 'cyan';
+            }
+        })
+        .attr('stroke', 'darkred')
+        .attr('r', 5)
+        .on("mousemove", function(d) {
+            if (active.node() === this) return;
+            var html = "";
+
+            html += "<div class=\"tooltip_kv\">";
+            html += "<span class=\"tooltip_key\">";
+            html += d.name;
+            html += "</span>";
+            html += "<span class=\"tooltip_value\">";
+            html += "Type: " + d.type;
+            html += "</span>";
+            html += "<br/><br/>Location: " + d.state_name;
+            html += "<br/>Click to visit website";
+            html += "</div>";
+
+            $("#tooltip-container").html(html);
+            $(this).attr("fill-opacity", "0.8");
+            $("#tooltip-container").show();
+
+            // var coordinates = d3.mouse(this);
+
+            var map_width = $('.viz')[0].getBoundingClientRect().width;
+
+            if (d3.event.layerX < map_width / 2) {
+                d3.select("#tooltip-container")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX + 15) + "px");
+            } else {
+                var tooltip_width = $("#tooltip-container").width();
+                d3.select("#tooltip-container")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+            }
+        })
+        .on('mouseout', function () {
+            $('#tooltip-container').hide();
+            $(this).attr("fill-opacity", "1");
+        });
 
     var sl = $('#slider').slider({
             formatter: function (value) {
@@ -553,6 +629,12 @@ function clicked(d) {
         scale = .9 / Math.max(dx / width, dy / height),
         translate = [width / 2 - scale * x, height / 2 - scale * y];
 
+    g.selectAll('.center-dots')
+        .transition()
+        .duration(750)
+        .attr("r", 5/scale);
+
+
     g.transition()
         .duration(750)
         .style("stroke-width", 1.5 / scale + "px")
@@ -582,5 +664,10 @@ function reset() {
         .duration(750)
         .style("stroke-width", "1.5px")
         .attr('transform', 'translate('+margin.left+','+margin.top+')');
+
+    g.selectAll('.center-dots')
+        .transition()
+        .duration(750)
+        .attr("r", 5);
 
 }
