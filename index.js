@@ -114,6 +114,7 @@ function ready(us, cancer_centers, counties_data) {
         })
         .on('mouseout', function () {
             $('#tooltip-container').hide();
+            $(this).attr("fill-opacity", "1");
         })
         .on("click", reset);
 
@@ -148,7 +149,7 @@ function ready(us, cancer_centers, counties_data) {
             html += "</div>";
 
             $("#tooltip-container").html(html);
-            $(this).attr("fill-opacity", "0.8");
+            // $(this).attr("fill-opacity", "0.8");
             $("#tooltip-container").show();
 
             // var coordinates = d3.mouse(this);
@@ -168,6 +169,7 @@ function ready(us, cancer_centers, counties_data) {
         })
         .on('mouseout', function () {
             $('#tooltip-container').hide();
+            // $(this).attr("fill-opacity", "1");
         })
         .on("click", clicked);
 
@@ -231,6 +233,7 @@ function ready(us, cancer_centers, counties_data) {
         })
         .on('mouseout', function () {
             $('#tooltip-container').hide();
+            $(this).attr("fill-opacity", "1");
         })
         .on("click", clicked);
 
