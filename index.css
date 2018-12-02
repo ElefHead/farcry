@@ -40,6 +40,7 @@ html, body {
 .center-items {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .margin-top {
@@ -93,6 +94,14 @@ html, body {
     border: 1px solid;
     z-index: 100;
     display: none;
+}
+
+.tooltip.in {
+    opacity: 0.9;
+}
+
+.tooltip.tooltip-arrow {
+    opacity: 1;
 }
 
 .tooltip_key {

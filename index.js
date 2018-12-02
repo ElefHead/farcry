@@ -57,6 +57,7 @@ var g = svg.append("g")
 var state_cancer_centers = {};
 var county_cancer_data = {};
 
+
 function ready(us, cancer_centers, counties_data) {
 
     state_cancer_centers = cancer_centers;
@@ -127,8 +128,8 @@ function ready(us, cancer_centers, counties_data) {
         .attr("d", path);
 
     var sl = $('#slider').slider({
-            formatter(value) {
-                return 'Year: ' + value;
+            formatter: function (value) {
+                return "Year: " + value;
             }
         })
         .on('slide', changeColor)
@@ -182,7 +183,6 @@ function ready(us, cancer_centers, counties_data) {
                         return "translate(" + x + "," + y + ")"
                             + "scale(" + 0 + ")"
                             + "translate(" + -x + "," + -y + ")";
-                        ;
                     }
                     else {
                         let index = fund / mrate;
