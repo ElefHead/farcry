@@ -258,11 +258,26 @@ def write_json(data, loc='', filename='', indent=2):
         dump(data, jd, indent=indent)
 
 
+def isolate_cancer_centers(data):
+    cancer_centers = {}
+    for i in list(data):
+        state_deets = data[i]
+        centers = state_deets['cancer_centers']
+        state_name = state_deets['state_name']
+        state_fips = Constants.STATE_CODES[state_name]
+        if centers:
+            for center in centers:
+                cancer_centers[center['name']] = center
+                cancer_centers[center['name']]['state_name'] = state_name
+                cancer_centers[center['name']]['state_fips'] = state_fips
+
+    return cancer_centers
+
+
 if __name__ == '__main__':
-    data_dict = transform_data()
-    add_time_varying_data(data_dict)
-    write_json(data_dict, path.join(Constants.ROOT_DIR, Constants.DATA_DIR),
-               Constants.JSON_DUMP_CANCER_CENTER, None)
+    data = read_json(path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_STATES_CANCER_CENTERS)
+    cancer_centers = isolate_cancer_centers(data)
+    write_json(cancer_centers, path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER, None)
 
 
 

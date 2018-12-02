@@ -23,8 +23,9 @@ class Constants:
     TOPOJSON_FILE = 'us-counties.topojson'
 
     #   result file names
-    JSON_DUMP_CANCER_CENTER = 'state_cancer_center.json'
+    JSON_DUMP_STATES_CANCER_CENTERS = 'state_cancer_center.json'
     JSON_DUMP_COUNTY_DATA = 'counties_cancer_data.json'
+    JSON_DUMP_CANCER_CENTER = 'cancer_centers_list.json'
     TOPOJSON_DUMP_FILE = 'new-us-counties.topojson'
 
     #   state names
