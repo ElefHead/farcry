@@ -271,11 +271,11 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
         .attr('fill', function(d) {
             let {type} = d;
             if (type === "Comp") {
-                return 'darkblue';
+                return '#08519c';
             }else if (type === "Clinical") {
-                return 'blue';
+                return '#6baedc';
             }else {
-                return 'cyan';
+                return '#deebf7';
             }
         })
         .attr('stroke', 'darkred')
