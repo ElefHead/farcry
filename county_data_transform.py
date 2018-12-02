@@ -99,6 +99,9 @@ def transform_county_data():
 
     for f in listdir(county_cancer_folders['breast']):
 
+        if f == '.DS_Store':
+            continue
+
         breast_cancer_data = np.empty((0, 0))
         cervical_cancer_data = np.empty((0, 0))
         colon_cancer_data = np.empty((0, 0))
@@ -121,6 +124,7 @@ def transform_county_data():
             all_cancer_data = read_csv(county_cancer_folders['all'], f.replace(' death',''))
 
         state_name = f[:-10].strip()
+        print("state name", state_name, f)
         state_name = state_name[0].upper() + state_name[1:]
         state_fips = str(Constants.STATE_CODES[state_name])
         state_short_name = Constants.STATE_NAMES_SHORTEN[state_name]

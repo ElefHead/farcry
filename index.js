@@ -25,7 +25,7 @@ var color = d3.scalePow()
     .range(d3.schemeReds[9]);
 
 var countyColor = d3.scaleLinear()
-    .domain([118, 130])
+    .domain([90, 110])
     .range(d3.schemeReds[9]);
 
 
@@ -78,6 +78,43 @@ function ready(us, cancer_centers, counties_data) {
 
             return countyColor(ar)
         })
+        .on("mousemove", function(d) {
+            if (active.node() === this) return;
+            let {id} = d;
+            var html = "";
+            const county_deets = county_cancer_data[pad(id, 5)];
+            html += "<div class=\"tooltip_kv\">";
+            html += "<span class=\"tooltip_key\">";
+            html += county_deets.county_name;
+            html += "</span>";
+            html += "<span class=\"tooltip_value\">Deaths Rate: ";
+            html += county_deets.all_death_rate;
+            html += "</span>";
+            html += "<br/><br/>Recent Trend: "+county_deets.all_recent_trend;
+            html += "</div>";
+
+            $("#tooltip-container").html(html);
+            $(this).attr("fill-opacity", "0.8");
+            $("#tooltip-container").show();
+
+            // var coordinates = d3.mouse(this);
+
+            var map_width = $('.viz')[0].getBoundingClientRect().width;
+
+            if (d3.event.layerX < map_width / 2) {
+                d3.select("#tooltip-container")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX + 15) + "px");
+            } else {
+                var tooltip_width = $("#tooltip-container").width();
+                d3.select("#tooltip-container")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+            }
+        })
+        .on('mouseout', function () {
+            $('#tooltip-container').hide();
+        })
         .on("click", reset);
 
     g.append("g")
@@ -92,6 +129,46 @@ function ready(us, cancer_centers, counties_data) {
         .attr('margin', 5)
         .attr('fill', "white")
         .attr('stroke', 'black')
+        .on("mousemove", function(d) {
+            if (active.node() === this) return;
+            let {id} = d;
+            const year = sl.getValue();
+            const state_deets = state_cancer_centers[id.toString()];
+            var html = "";
+
+            html += "<div class=\"tooltip_kv\">";
+            html += "<span class=\"tooltip_key\">";
+            html += state_deets.state_name;
+            html += "</span>";
+            html += "<span class=\"tooltip_value\">Year: ";
+            html += year;
+            html += "</span>";
+            html += "<br/><br/>Death Rate: " + state_deets.mortality_by_year.Rate[year - 2000];
+            html += "<br/>Funding: " + state_deets.funding_by_year.TotalAmount[year - 2000];
+            html += "</div>";
+
+            $("#tooltip-container").html(html);
+            $(this).attr("fill-opacity", "0.8");
+            $("#tooltip-container").show();
+
+            // var coordinates = d3.mouse(this);
+
+            var map_width = $('.viz')[0].getBoundingClientRect().width;
+
+            if (d3.event.layerX < map_width / 2) {
+                d3.select("#tooltip-container")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX + 15) + "px");
+            } else {
+                var tooltip_width = $("#tooltip-container").width();
+                d3.select("#tooltip-container")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+            }
+        })
+        .on('mouseout', function () {
+            $('#tooltip-container').hide();
+        })
         .on("click", clicked);
 
     g.append("g")
@@ -114,6 +191,46 @@ function ready(us, cancer_centers, counties_data) {
             if (mortality === undefined || mortality===null)
                 return 'gray';
             return color(parseFloat(mortality));
+        })
+        .on("mousemove", function(d) {
+            if (active.node() === this) return;
+            let {id} = d;
+            const year = sl.getValue();
+            const state_deets = state_cancer_centers[id.toString()];
+            var html = "";
+
+            html += "<div class=\"tooltip_kv\">";
+            html += "<span class=\"tooltip_key\">";
+            html += state_deets.state_name;
+            html += "</span>";
+            html += "<span class=\"tooltip_value\">Year: ";
+            html += year;
+            html += "</span>";
+            html += "<br/><br/>Death Rate: " + state_deets.mortality_by_year.Rate[year - 2000];
+            html += "<br/>Funding: " + state_deets.funding_by_year.TotalAmount[year - 2000];
+            html += "</div>";
+
+            $("#tooltip-container").html(html);
+            $(this).attr("fill-opacity", "0.8");
+            $("#tooltip-container").show();
+
+            // var coordinates = d3.mouse(this);
+
+            var map_width = $('.viz')[0].getBoundingClientRect().width;
+
+            if (d3.event.layerX < map_width / 2) {
+                d3.select("#tooltip-container")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX + 15) + "px");
+            } else {
+                var tooltip_width = $("#tooltip-container").width();
+                d3.select("#tooltip-container")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+            }
+        })
+        .on('mouseout', function () {
+            $('#tooltip-container').hide();
         })
         .on("click", clicked);
 
@@ -181,8 +298,14 @@ function ready(us, cancer_centers, counties_data) {
                             + "translate(" + -x + "," + -y + ")";
                     }
                     else {
-                        let index = fund / mrate;
-                        let scale_factor = index / 2362.209;
+                        // let index = fund / mrate;
+                        // let scale_factor = index / 2362.209;
+                        let scale_factor = fund / 447728.861;
+                        if (isNaN(scale_factor)) {
+                            return "translate(" + x + "," + y + ")"
+                                + "scale(" + 0 + ")"
+                                + "translate(" + -x + "," + -y + ")";
+                        }
                         return "translate(" + x + "," + y + ")"
                             + "scale(" + scale_factor + ")"
                             + "translate(" + -x + "," + -y + ")";
