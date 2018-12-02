@@ -58,6 +58,7 @@ var state_cancer_centers = {};
 var county_cancer_data = {};
 var isolated_cancer_centers = {};
 
+var ccradius = 5;
 
 function ready(us, cancer_centers, cancer_center_list, counties_data) {
     isolated_cancer_centers = cancer_center_list;
@@ -128,7 +129,7 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
         .attr("class", function (d) {
             return "state-white state-white"+d.id;
         })
-        .attr('margin', 5)
+        // .attr('margin', 5)
         .attr('fill', "white")
         .attr('stroke', 'black')
         .on("mousemove", function(d) {
@@ -181,7 +182,7 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
         .enter().append("path")
         .attr("d", path)
         .attr("class", "state")
-        .attr('margin', 5)
+        // .attr('margin', 5)
         .attr('fill', function (d) {
             let {id} = d;
             const state_deets = state_cancer_centers[id.toString()];
@@ -279,7 +280,7 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
             }
         })
         .attr('stroke', 'darkred')
-        .attr('r', 5)
+        .attr('r', ccradius)
         .on("mousemove", function(d) {
             if (active.node() === this) return;
             var html = "";
@@ -632,7 +633,7 @@ function clicked(d) {
     g.selectAll('.center-dots')
         .transition()
         .duration(750)
-        .attr("r", 5/scale);
+        .attr("r", 3/scale);
 
 
     g.transition()
@@ -668,6 +669,6 @@ function reset() {
     g.selectAll('.center-dots')
         .transition()
         .duration(750)
-        .attr("r", 5);
+        .attr("r", ccradius);
 
 }
