@@ -25,8 +25,8 @@ var color = d3.scalePow()
     .range(d3.schemeReds[9]);
 
 var countyColor = d3.scaleLinear()
-    .domain([0, 5])
-    .range(d3.schemeBlues[9]);
+    .domain([118, 130])
+    .range(d3.schemeReds[9]);
 
 
 Promise.all([d3.json('data/us-counties.topojson'), d3.json('data/state_cancer_center.json'), d3.json('data/counties_cancer_data.json')])
@@ -73,14 +73,10 @@ function ready(us, cancer_centers, counties_data) {
             const county_fips = pad(d.id, 5);
             const county_data = county_cancer_data[county_fips];
             if (county_data === undefined) return "black";
-            let {breast_death_rate: br, cervical_death_rate: cr, colon_death_rate: cor, stomach_death_rate: sr} = county_data
-            if (br === null) br = 0;
-            if (cr === null) cr = 0;
-            if (cor === null) cor = 0;
-            if (sr === null) sr = 0;
+            let {all_death_rate: ar} = county_data;
+            if (ar === null) ar = 0;
 
-            const total = parseFloat(br) + parseFloat(cr) + parseFloat(cor) + parseFloat(sr);
-            return countyColor(total)
+            return countyColor(ar)
         })
         .on("click", reset);
 
