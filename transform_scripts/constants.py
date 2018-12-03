@@ -1,9 +1,9 @@
-from os import path
+from os import path, pardir
 
 
 class Constants:
     #   directories
-    ROOT_DIR = path.dirname(path.abspath(path.join(__file__)))
+    ROOT_DIR = path.dirname(path.abspath(path.join(__file__, pardir)))
     DATA_DIR = 'data'
     UNFORMATTED_COUNTY_MORTALITY_RATES = 'Mortality rate by county'
     FORMATTED_COUNTY_MORTALITY_RATES = 'Formatted Mortality rates by county'

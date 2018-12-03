@@ -3,7 +3,7 @@ from os import path, makedirs, listdir
 from json import dump, load
 import numpy as np
 
-from constants import Constants
+from transform_scripts.constants import Constants
 
 
 def read_csv(loc='', filename='', sep=',', header='infer', encoding='ISO-8859-1', dtype=None):
