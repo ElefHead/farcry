@@ -340,7 +340,7 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
 
     function changeColor() {
         let year = sl.getValue();
-        $("#main-year").text(year);
+        $(".main-year").text(year);
         g.selectAll('.state')
             .attr('fill', function(d) {
                 let {id} = d;
