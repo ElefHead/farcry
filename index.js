@@ -21,11 +21,11 @@ svg.append('rect')
     .on('click', clicked);
 
 var color = d3.scalePow()
-    .domain([70, 88])
+    .domain([70, 87])
     .range(d3.schemeReds[9]);
 
 var countyColor = d3.scaleLinear()
-    .domain([70, 88])
+    .domain([70, 87])
     .range(d3.schemeReds[9]);
 
 
