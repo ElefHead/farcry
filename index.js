@@ -218,7 +218,7 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
             html += year;
             html += "</span>";
             html += "<br/><br/>Death Rate: " + state_deets.mortality_by_year.Rate[year - 2000];
-            html += "<br/>Funding: " + state_deets.funding_by_year.TotalAmount[year - 2000];
+            html += "<br/>Funding (per $1000): " + state_deets.funding_by_year.TotalAmount[year - 2000];
             html += "</div>";
 
             $("#tooltip-container").html(html);
@@ -340,6 +340,7 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
 
     function changeColor() {
         let year = sl.getValue();
+        $("#main-year").text(year);
         g.selectAll('.state')
             .attr('fill', function(d) {
                 let {id} = d;
@@ -618,7 +619,9 @@ function clicked(d) {
         return null;
     }
 
+
     $('.viz-buttons').css('display', 'none');
+    $('#scroll-text').css('display', 'block');
 
     $('#counties').css('display', 'block');
     $('.state-white').css('display', 'block');
@@ -637,6 +640,10 @@ function clicked(d) {
     if (active.node() === this) return reset();
 
     let state_data = state_cancer_centers[d.id.toString()];
+
+    $('#map-tag').html(
+        "5 year average age-adjusted death rate for each county in <b>"+state_data.state_name+"</b> over the years (2012 - 2017)"
+    );
     // console.log(state_data);
     // console.log(state_data.mortality_by_year.Rate);
 
@@ -703,10 +710,13 @@ function reset() {
     $('.state-white').css('display', 'block');
     $('.viz-buttons').css('display', 'block');
     $('.state').css('display', 'block');
-
+    $('#scroll-text').css('display', 'none');
     active.classed("active", false);
     active = d3.select(null);
 
+    $('#map-tag').html(
+        "age-adjusted death rate for each state for each year"
+    );
     d3.select(".chart-viz")
         .selectAll("svg")
         .remove();

@@ -19,6 +19,18 @@ html, body {
     cursor: pointer;
 }
 
+.darkred {
+    color: #C62637;
+}
+
+.darkblue {
+    color: #1748ab;
+}
+
+.blue {
+    color: #3c91f2;
+}
+
 .margin-top-bottom {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -41,6 +53,14 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.vertical-flow {
+    flex-flow: column;
 }
 
 .margin-top {
