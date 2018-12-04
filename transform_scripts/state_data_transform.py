@@ -274,10 +274,20 @@ def isolate_cancer_centers(data):
     return cancer_centers
 
 
+def get_mean(data):
+    column_datas = []
+    for i in list(data):
+        funding_through_years = data[i]['funding_by_year']['TotalAmount']
+        column_datas.append([float(x) if x else 0 for x in funding_through_years])
+    column_datas = np.asarray(column_datas, dtype=np.float64)
+    return np.mean(column_datas, axis=0)
+
+
 if __name__ == '__main__':
     data = read_json(path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_STATES_CANCER_CENTERS)
-    cancer_centers = isolate_cancer_centers(data)
-    write_json(list(cancer_centers.values()), path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER, None)
+    print(', '.join(get_mean(data).astype(str)))
+    # cancer_centers = isolate_cancer_centers(data)
+    # write_json(list(cancer_centers.values()), path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER, None)
 
 
 

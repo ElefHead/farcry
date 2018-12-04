@@ -29,6 +29,12 @@ var countyColor = d3.scaleLinear()
     .range(d3.schemeReds[9]);
 
 
+var funding_means = ["46615.480769230766", "52589.192307692305", "60677.92307692308", "71232.71153846153", "68523.98076923077",
+    "69293.96153846153", "68630.96153846153", "69027.15384615384", "68749.73076923077", "69824.13461538461", "71414.82692307692",
+    "71389.32692307692", "71455.90384615384", "67251.80769230769", "68608.58853846151", "66643.44338461538"];
+
+
+
 Promise.all([d3.json('data/us-counties.topojson'), d3.json('data/state_cancer_center.json'), d3.json('data/cancer_centers_list.json'), d3.json('data/counties_cancer_data.json')])
     .then(([us, cancer_centers, cancer_center_list, counties_data]) => {
         ready(us, cancer_centers, cancer_center_list, counties_data)
@@ -64,6 +70,7 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
     isolated_cancer_centers = cancer_center_list;
     state_cancer_centers = cancer_centers;
     county_cancer_data = counties_data;
+
     g.append("g")
         .attr("id", "counties")
         .selectAll("path")
@@ -425,13 +432,35 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
 }
 
 
-function drawChart(dataset, uniq, desc=[], title='') {
+function drawChart(dataset, uniq, desc=[], title='', range=null, description="") {
 
     let years = [...Array(16).keys()].map((x) => x + 2000);
-    dataset = dataset.map((ds) => ds.map((x) => parseFloat(x.replaceAll(',',''))));
+    dataset = dataset.map((ds) => ds.map((x, i) => {
+        if (x === null) {
+            x = NaN;
+        }
+        if (isNaN(x)) {
+                let j = i;
+                while (isNaN(x) && j>0) {
+                    x = ds[j - 1];
+                    j -= 1;
+                }
+                j = ds.length;
+                while (isNaN(x) && j<ds.length){
+                    x = ds[j-1];
+                    j += 1;
+                }
+        }
+        return parseFloat(x.replaceAll(',',''))
+    }));
 
     let domain_min = Number.POSITIVE_INFINITY;
     let domain_max = Number.NEGATIVE_INFINITY;
+
+    if (range != null) {
+        domain_min = range[0];
+        domain_max = range[1];
+    }
 
     for (let i=0; i< dataset.length; i++) {
         // console.log(i, dataset[i]);
@@ -444,11 +473,10 @@ function drawChart(dataset, uniq, desc=[], title='') {
             domain_max = current_max;
     }
 
-    // console.log(domain_max, domain_min);
 
     var xScale = d3.scaleLinear()
         .domain([1999, 2016]) // input
-        .range([0, width - margin.left*2.5]); // output
+        .range([0, width - margin.left*4]); // output
 
     var yScale = d3.scaleLinear()
         .domain([domain_min-100, domain_max+100]) // input
@@ -471,6 +499,19 @@ function drawChart(dataset, uniq, desc=[], title='') {
 
     d3.select(".chart-viz")
         .append("div")
+        .attr("class", 'col-12 center-items')
+        .append('p')
+        .attr("class", "font_4")
+        .text(description);
+
+    d3.select('.chart-viz')
+        .append("div")
+        .attr('class', 'center-items')
+        .append("p")
+        .text("Click the labels to filter. Hover on points for details.");
+
+    d3.select(".chart-viz")
+        .append("div")
         .attr('id', 'charttip-container'+uniq)
         .attr('class', 'charttip-container');
 
@@ -478,30 +519,30 @@ function drawChart(dataset, uniq, desc=[], title='') {
         .attr("width", width + margin.left + margin.right )
         .attr("height", height/3 + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", "translate(" + margin.left*3 + "," + margin.top/3 + ")");
+        .attr("transform", "translate(" + margin.left*4.5 + "," + margin.top/3 + ")");
 
     chartsvg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(" + 0 + "," + height/3 + ")")
         .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))); // Create an axis component with d3.axisBottom
 
-// 4. Call the y axis in a group tag
+
     chartsvg.append("g")
         .attr("class", "y axis")
         .call(d3.axisLeft(yScale).tickFormat(d3.format("d"))); // Create an axis component with d3.axisLeft
 
-// 9. Append the path, bind the data, and call the line generator
+
     dataset.map((ds, i) => {
         chartsvg.append("path")
             .datum(ds) // 10. Binds data to the line
-            .attr("class", "line "+uniq+desc[i].color) // Assign a class for styling
+            .attr("class", "line "+uniq+desc[i].color.replace("#")) // Assign a class for styling
             .attr("d", line)
             .attr("stroke", desc[i].color);
 
         chartsvg.selectAll(".dot"+i)
             .data(ds).enter()
             .append('circle')
-            .attr("class", "dot " + uniq + desc[i].color) // Assign a class for styling
+            .attr("class", "dot " + uniq + desc[i].color.replace("#")) // Assign a class for styling
             .attr("cx", function(d, i) { return xScale(years[i]) })
             .attr("cy", function(d) { return yScale(d) })
             .attr("r", 3)
@@ -516,7 +557,7 @@ function drawChart(dataset, uniq, desc=[], title='') {
                 html += desc[i].label;
                 html += "</span>";
                 html += "<span class=\"tooltip_value\">" + years[index] + ": ";
-                html += d;
+                html += d.toFixed(3);
                 html += "";
                 html += "</span>";
                 html += "</div>";
@@ -551,7 +592,7 @@ function drawChart(dataset, uniq, desc=[], title='') {
 
     for (var y in desc) {
         series = legend.append('div');
-        series.append('div').attr("class", "series-marker " + "series-marker"+uniq+desc[y].color).style("background-color", desc[y].color)
+        series.append('div').attr("class", "series-marker " + "series-marker"+uniq+desc[y].color.replace("#")).style("background-color", desc[y].color)
             .on('click', function() {
                 let selector = '.'+$(this).attr('class').replaceAll('series-marker', '').trim();
                 if($(selector).css('display') !== 'none') {
@@ -601,23 +642,37 @@ function clicked(d) {
 
     let {RateFemale:mortalityFemale, RateMale:mortalityMale, RateTotal:mortalityTotal} = state_data.gender_mortality_by_year;
     let {RateWhite, RateOther, RateBlack, RateAll} = state_data.race_mortality_by_year;
+    let {TotalAmount} = state_data.funding_by_year;
 
     drawChart([mortalityFemale, mortalityMale, mortalityTotal],
         'gender',
         [
-            {color: 'red', label: 'Female'},
-            {color: 'blue', label: 'Male'},
-            {color: 'black', label: 'Both'}
-        ], 'Gender based Age-Adjusted Death Rate');
-    drawChart([RateWhite, RateOther, RateBlack, RateAll],
+            {color: '#CC79A7', label: 'Female'},
+            {color: '#56B4E9', label: 'Male'},
+            {color: '#000000', label: 'Mean'}
+        ], 'Gender based Age-Adjusted Death Rates',
+        null,
+        "This graph plots the gender-wise age-adjusted death rate per 100,000 people over the years 2000 - 2015 in "+state_data.state_name+".");
+    drawChart([RateWhite, RateBlack, RateOther, RateAll],
         'ethnicity',
         [
-            {color: 'red', label: 'White'},
-            {color: 'blue', label: 'Other'},
-            {color: 'black', label: 'Black'},
-            {color: 'green', label: 'All'}
+            {color: '#DA2C7F', label: 'Caucasian'},
+            {color: '#0072B2', label: 'African-American'},
+            {color: '#E69F00', label: 'Other'},
+            {color: '#000000', label: 'Mean'}
         ],
-        'Ethnicity based Age-Adjusted Death Rate');
+        'Ethnicity based Age-Adjusted Death Rates',
+        null,
+        "This graph plots the age-adjusted death rate per 100,000 people by ethnicity over 2000 - 2015 in "+state_data.state_name+".");
+
+    drawChart([TotalAmount, funding_means], 'funding_data',
+        [
+            {color: '#009E73', label: state_data.state_name},
+            {color: '#000000', label: "Mean"}
+        ],
+        "Total Fund Amounts",
+        [10000, 700000],
+        "This graph plots state funding and mean funding amounts per $1,000 over 2000 - 2015 for "+state_data.state_name+".");
 
     active.classed("active", false);
     active = d3.select(this).classed("active", true);
@@ -633,7 +688,7 @@ function clicked(d) {
     g.selectAll('.center-dots')
         .transition()
         .duration(750)
-        .attr("r", 3/scale);
+        .attr("r", 3.5/scale);
 
 
     g.transition()
