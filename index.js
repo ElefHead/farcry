@@ -668,7 +668,7 @@ function clicked(d) {
             {color: '#E69F00', label: 'Other'},
             {color: '#000000', label: 'Mean'}
         ],
-        'Ethnicity based Age-Adjusted Death Rates',
+        'Race-Ethnicity based Age-Adjusted Death Rates',
         null,
         "This graph plots the age-adjusted death rate per 100,000 people by ethnicity over 2000 - 2015 in "+state_data.state_name+".");
 

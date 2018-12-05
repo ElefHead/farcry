@@ -19,11 +19,11 @@
                     <h1 class="font_0">Correlating State Cancer Center Funding with State Cancer Mortality</h1>
                 </div>
                 <div class="center-items text-center">
-                    <p class="font_5">The following map shows the <span id="map-tag">age-adjusted death rate for each state for each year</span>. <span class="darkred">Darker the red</span>, higher the <span class="darkred">death rate</span>. The <span class="blue">blue dots</span> on the
-                        map show the <u><a href="https://www.cancer.gov/research/nci-role/cancer-centers" target="_blank">NCI designated cancer centers</a></u>. <span class="darkblue">Darker blues</span> show the <span class="darkblue">better funded</span> cancer centers as compared to the <span class="blue">blue</span> or <span class="lightblue">light blue</span> ones.<br/><span class="viz-buttons"> You are currently looking at year: <b><span class="main-year">2000</span></b></span></p>
+                    <p class="font_5">The following map shows the <span id="map-tag">age-adjusted all cancer death rate for each state by year</span>. <span class="darkred">Darker the red</span>, the higher the <span class="darkred">cancer death rate</span>  per 100,000 population. The <span class="blue">blue dots</span> on the
+                        map show the location of <u><a href="https://www.cancer.gov/research/nci-role/cancer-centers" target="_blank">NCI designated cancer centers</a></u>. <span class="darkblue">Dark blue dots</span> show the <span class="darkblue">Comprehensive Cancer Centers</span>, <span class="blue">blue</span> show the <span class="blue">Clinical Cancer Centers</span> & <span class="lightblue">light blue</span> show the <span class="lightblue">Basic Cancer Centers</span>.<br/><span class="viz-buttons"> You are currently looking at year: <b><span class="main-year">2000</span></b></span></p>
                 </div>
                 <div class="margin-top-bottom text-center">
-                    <p class="font_4 viz-buttons">Click on map to reveal state information. Hover on map for details.<br/><span class="">Use the slider below to set year. Click button below to resize states by funding.</span></p>
+                    <p class="font_4 viz-buttons">Click on map to reveal individual state information. Hover on map for details.<br/><span class="">Use the slider below to set year. Click button below to resize states by funding.</span></p>
                     <p class=" font_4 hidden" id="scroll-text">Hover on map for details. Scroll down for trends.<br/>Click on map to zoom out.</p>
                 </div>
             </div>
@@ -57,12 +57,13 @@
                     </div>
                     <div class="col-12 center-container">
                         <ul class="font_5">
-                            <li>This visualization shows the age-adjusted <span class="darkred">death rate</span> for each state over the years 2000-2015.</li>
-                            <li>The slider can be used to change the year; it only affects the state data. On the zoomed-out map the shows all of USA.</li>
-                            <li>The county data is not year-wise. It is the 5 year average (2012-2017) age-adjusted death rate.</li>
-                            <li>All the funding data is in terms of $1,000 per unit.</li>
+                            <li>This visualization shows the age-adjusted <span class="darkred">cancer death rate</span> for each state over the years 2000-2015.</li>
+                            <li>The slider can be used to change the year; it only affects the state data on the zoomed-out map that shows all of USA.</li>
+                            <li>The county data is not year-wise. It is the 5 year average (2011-2015) age-adjusted death rate.</li>
+                            <li>The funding data is expressed in dollars per 1,000.</li>
                             <li>The blue dots show the following:
                                 <ul>
+                                    <!--<li> hyperlink what these mean.-->
                                     <li>
                                         The <span class="darkblue">dark blue</span> dots show <span class="darkblue">Comprehensive cancer center</span>.
                                     </li>
