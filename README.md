@@ -24,10 +24,10 @@ Upon clicking on a state, the application zooms in to visualize the average age-
 * The timeseries graphs that display trends for a specific state can be filtered using the labels.
 
 ## Acknowledgements
-We would like to thank Dr. G. Elizabeth Marai, the Electronic Visualization Laboratory and University of Illinois at Chicago for the graduate course “Visual Data Science” and particularly Dr. Marai for structuring the course in a way to provide students with opportunities to work on real problems with clients, and providing much required guidance throughout the way. 
+We would like to thank [Dr. G. Elizabeth Marai](https://www.evl.uic.edu/marai/), the [Electronic Visualization Laboratory](https://www.evl.uic.edu/) and [University of Illinois at Chicago](https://www.uic.edu/) for the graduate course “Visual Data Science” and particularly Dr. Marai for structuring the course in a way to provide students with opportunities to work on real problems with clients, and providing much required guidance throughout the way. 
 
-We also thank Dr. Katherine Tossas-Milligan and UI Cancer Center for their passionate collaboration and guidance.   
+We also thank [Dr. Katherine Tossas-Milligan](https://www.linkedin.com/in/katherinetossasmilligan/) and [UI Cancer Center](https://cancer.uillinois.edu/) for their passionate collaboration and guidance.   
 
-Further, we thank our course teaching assistant Peter Hanula for his constant help and support.  
+Further, we thank our course teaching assistant [Peter Hanula](https://www.evl.uic.edu/entry.php?id=2251) for his constant help and support.  
 
 Finally, we thank our course-mates for their feedback at every step of the process.  
