@@ -1,5 +1,5 @@
 # FARCRY
-This project is aimed at visualising the longitudinal impact of cancer center funding patterns on state cancer rates over the years and has be given the acronym - FARCRY. We are working with Dr. Katherine Tossas-Milligan and our main clients are cancer center leadership, administrators, staff and researchers. The aim is to achieve more granularity on this application and an eventual visualization for the general public. 
+This project is aimed at visualising the longitudinal impact of cancer center funding patterns on state cancer rates over the years and has be given the acronym - FARCRY. We are working with Dr. Katherine Tossas-Milligan from UI Cancer Center and our main clients are cancer center leadership, administrators, staff and researchers. The aim is to achieve more granularity on this application and an eventual visualization for the general public. 
 
 ## Application
 We have developed an application that visualizes the cancer mortality (or age-adjusted death rate) for each state by year (2000 - 2015). This application also pinpoints the location of each comprehensive cancer center in USA and some basic and clinical cancer center. The user has the option to use a slider to set the year and click on button to resize the states by their funding amounts.  
