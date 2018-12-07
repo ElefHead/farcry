@@ -73,8 +73,6 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
     state_cancer_centers = cancer_centers;
     county_cancer_data = counties_data;
 
-    console.log(cancer_center_list)
-
     g.append("g")
         .attr("id", "counties")
         .selectAll("path")
@@ -270,7 +268,6 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
         .attr('cx', function (d) {
             let {lat, long} = d;
             let coords = projection([long, lat]);
-            console.log(d, coords);
             return coords[0];
         })
         .attr('id', function (d) {
