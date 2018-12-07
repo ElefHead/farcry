@@ -361,9 +361,15 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
         g.selectAll('.center-dots')
             .attr('style', function(d) {
                 let {year: nci_year} = d;
+                nci_year = parseInt(nci_year);
                 if (nci_year <= year) {
                     return 'display:block';
                 }else {
+                    if (year === 2015) {
+                        if (nci_year > 2015) {
+                            return 'display:block';
+                        }
+                    }
                     return 'display:none';
                 }
             });
@@ -757,14 +763,20 @@ function reset() {
 
     let year = sl.getValue();
     g.selectAll('.center-dots')
-        .attr('style', function(d) {
-            let {year: nci_year} = d;
-            if (nci_year <= year) {
-                return 'display:block';
-            }else {
-                return 'display:none';
-            }
-        });
+            .attr('style', function(d) {
+                let {year: nci_year} = d;
+                nci_year = parseInt(nci_year);
+                if (nci_year <= year) {
+                    return 'display:block';
+                }else {
+                    if (year === 2015) {
+                        if (nci_year > 2015) {
+                            return 'display:block';
+                        }
+                    }
+                    return 'display:none';
+                }
+            });
 
     g.transition()
         .delay(100)
