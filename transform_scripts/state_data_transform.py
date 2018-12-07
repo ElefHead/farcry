@@ -2,6 +2,7 @@ import pandas as pd
 from os import path, makedirs, listdir
 from json import dump, load
 import numpy as np
+from geopy.geocoders import Nominatim
 
 from transform_scripts.constants import Constants
 
@@ -250,27 +251,50 @@ def add_time_varying_data(data_dict):
 
 
 def write_json(data, loc='', filename='', indent=2):
-    if not path.exists(loc):
-        makedirs(loc)
     assert filename, 'Please enter valid filename'
     json_filepath = path.join(loc, filename)
     with open(json_filepath, 'w') as jd:
-        dump(data, jd, indent=indent)
+        dump(data, jd, indent=indent, default=str)
+
+
+def get_lat_long(data):
+    geolocator = Nominatim(user_agent='elefhead')
+    lat = []
+    long = []
+    for i in range(data.shape[0]):
+        address = data['Address'][i]
+        try:
+            location = geolocator.geocode(address)
+            if location:
+                lat.append(location.latitude)
+                long.append(location.longitude)
+            else:
+                lat.append(None)
+                long.append(None)
+        except:
+            lat.append(None)
+            long.append(None)
+
+    data['latitude'] = lat
+    data['longitude'] = long
+
+    data.to_csv(path.join(Constants.ROOT_DIR, Constants.DATA_DIR, Constants.CANCER_CENTERS))
 
 
 def isolate_cancer_centers(data):
-    cancer_centers = {}
-    for i in list(data):
-        state_deets = data[i]
-        centers = state_deets['cancer_centers']
-        state_name = state_deets['state_name']
+    cancer_centers = []
+    for i in range(data.shape[0]):
+        address = data['Address'][i]
+        lat = data['latitude'][i]
+        long = data['longitude'][i]
+        year_nci = data['Achieved NCI cancer center designation'][i]
+        name = data['Center Name'][i]
+        state_short = data['State'][i]
+        state_name = Constants.STATE_NAME[state_short]
         state_fips = Constants.STATE_CODES[state_name]
-        if centers:
-            for center in centers:
-                cancer_centers[center['name']] = center
-                cancer_centers[center['name']]['state_name'] = state_name
-                cancer_centers[center['name']]['state_fips'] = state_fips
-
+        cancer_centers.append({"name": name, "address": address, "lat": lat, "long": long,
+                               "year": year_nci, "state_short": state_short, "state_name": state_name,
+                               "state_fips": state_fips})
     return cancer_centers
 
 
@@ -284,10 +308,10 @@ def get_mean(data):
 
 
 if __name__ == '__main__':
-    data = read_json(path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_STATES_CANCER_CENTERS)
-    print(', '.join(get_mean(data).astype(str)))
-    # cancer_centers = isolate_cancer_centers(data)
-    # write_json(list(cancer_centers.values()), path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER, None)
+    data = read_csv(path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.CANCER_CENTERS)
+    cancer_centers = isolate_cancer_centers(data)
+
+    write_json(cancer_centers, path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER, None)
 
 
 
