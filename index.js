@@ -46,6 +46,8 @@ function pad(num, size) {
     return s;
 }
 
+var sl;
+
 
 const projection = d3.geoAlbersUsa()
     .translate([width /2 , height / 2])
@@ -70,6 +72,8 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
     isolated_cancer_centers = cancer_center_list;
     state_cancer_centers = cancer_centers;
     county_cancer_data = counties_data;
+
+    console.log(cancer_center_list)
 
     g.append("g")
         .attr("id", "counties")
@@ -264,16 +268,17 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
         .append('circle')
         .attr('class', 'center-dots')
         .attr('cx', function (d) {
-            let {lat, lon} = d;
-            let coords = projection([parseFloat(lon), parseFloat(lat)]);
+            let {lat, long} = d;
+            let coords = projection([long, lat]);
+            console.log(d, coords);
             return coords[0];
         })
         .attr('id', function (d) {
             return d.name;
         })
         .attr('cy', function(d) {
-            let {lat, lon} = d;
-            let coords = projection([parseFloat(lon), parseFloat(lat)]);
+            let {lat, long} = d;
+            let coords = projection([long, lat]);
             return coords[1];
         })
         .attr('fill', function(d) {
@@ -282,9 +287,23 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
                 return '#08519c';
             }else if (type === "Clinical") {
                 return '#6baedc';
-            }else {
+            }else if (type === 'Basic'){
                 return '#deebf7';
+            }else {
+                return 'black';
             }
+        })
+        .attr('year', function (d) {
+            return d.year;
+        })
+        .attr('style', function (d) {
+            let {year} = d;
+
+            if (parseInt(year)<=2000)
+                return 'display:block';
+            else
+                return 'display:none';
+
         })
         .attr('stroke', 'darkred')
         .attr('r', ccradius)
@@ -299,7 +318,8 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
             html += "<span class=\"tooltip_value\">";
             html += "Type: " + d.type;
             html += "</span>";
-            html += "<br/><br/>Location: " + d.state_name;
+            html += "<br/><br/>Year designated: "+d.year;
+            html += "<br/>Location: " + d.state_name;
             html += "<br/>Click to visit website";
             html += "</div>";
 
@@ -327,7 +347,7 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
             $(this).attr("fill-opacity", "1");
         });
 
-    var sl = $('#slider').slider({
+        sl = $('#slider').slider({
             formatter: function (value) {
                 return "Year: " + value;
             }
@@ -341,6 +361,16 @@ function ready(us, cancer_centers, cancer_center_list, counties_data) {
     function changeColor() {
         let year = sl.getValue();
         $(".main-year").text(year);
+        g.selectAll('.center-dots')
+            .attr('style', function(d) {
+                let {year: nci_year} = d;
+                if (nci_year <= year) {
+                    return 'display:block';
+                }else {
+                    return 'display:none';
+                }
+            });
+
         g.selectAll('.state')
             .attr('fill', function(d) {
                 let {id} = d;
@@ -635,6 +665,9 @@ function clicked(d) {
         .selectAll("div")
         .remove();
 
+    g.selectAll('.center-dots')
+        .attr('style', 'display:block');
+
     if (d3.select('.background').node() === this) return reset();
 
     if (active.node() === this) return reset();
@@ -724,6 +757,17 @@ function reset() {
     d3.select(".chart-viz")
         .selectAll("div")
         .remove();
+
+    let year = sl.getValue();
+    g.selectAll('.center-dots')
+        .attr('style', function(d) {
+            let {year: nci_year} = d;
+            if (nci_year <= year) {
+                return 'display:block';
+            }else {
+                return 'display:none';
+            }
+        });
 
     g.transition()
         .delay(100)

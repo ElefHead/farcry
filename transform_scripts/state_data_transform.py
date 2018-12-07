@@ -282,19 +282,21 @@ def get_lat_long(data):
 
 
 def isolate_cancer_centers(data):
-    cancer_centers = []
+    cancer_centers = {}
     for i in range(data.shape[0]):
+        type = data['Type'][i]
         address = data['Address'][i]
         lat = data['latitude'][i]
         long = data['longitude'][i]
         year_nci = data['Achieved NCI cancer center designation'][i]
         name = data['Center Name'][i]
+        link = data['Link'][i]
         state_short = data['State'][i]
         state_name = Constants.STATE_NAME[state_short]
         state_fips = Constants.STATE_CODES[state_name]
-        cancer_centers.append({"name": name, "address": address, "lat": lat, "long": long,
+        cancer_centers[name] = {"type": type, "name": name, "address": address, "lat": lat, "long": long,
                                "year": year_nci, "state_short": state_short, "state_name": state_name,
-                               "state_fips": state_fips})
+                               "state_fips": state_fips, "link": link}
     return cancer_centers
 
 
@@ -311,7 +313,7 @@ if __name__ == '__main__':
     data = read_csv(path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.CANCER_CENTERS)
     cancer_centers = isolate_cancer_centers(data)
 
-    write_json(cancer_centers, path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER, None)
+    write_json(list(cancer_centers.values()), path.join(Constants.ROOT_DIR, Constants.DATA_DIR), Constants.JSON_DUMP_CANCER_CENTER, None)
 
 
 
